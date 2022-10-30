@@ -27,8 +27,13 @@ public class InputManager : Manager
         
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            Debug.Log("InputController mouse Pressed");
+            Debug.Log("InputController mouse0 Pressed");
             TriggerEvent<HeavyAttackButtonPressedEvent>(new HeavyAttackButtonPressedEvent());
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            Debug.Log("InputController mouse1 Pressed");
+            TriggerEvent<LightAttackButtonPressedEvent>(new LightAttackButtonPressedEvent());
         }
     }
 
