@@ -3,8 +3,8 @@ using MrPigCore;
 using UnityEngine;
 
 public class InputManager : Manager
-{
-
+{// this float is for rotating player. in the curly brackets is property acts like a var but has functionality
+    public float inputAxisMouseX { get; private set; }
     public Vector3 inputAxis { get; private set; }
     [SerializeField] private bool relativeMovement;
 
@@ -13,7 +13,8 @@ public class InputManager : Manager
 
     private Transform playerTransform => gameManager.playerBehaviour.transform;
     private void Update()
-    {
+    {// this line below is to set the variable to the mouse
+        inputAxisMouseX = Input.GetAxis("Mouse X");
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         if (relativeMovement)

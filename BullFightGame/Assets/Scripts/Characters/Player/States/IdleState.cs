@@ -15,7 +15,15 @@ public class IdleState : BasePlayerState
         base.Enter();
         Debug.Log("IDLE Enter");
         behaviour.StartListeningToEvent<HeavyAttackButtonPressedEvent>(OnHeavyAttackButtonPressedEvent);
+        behaviour.StartListeningToEvent<LightAttackButtonPressedEvent>(OnLightAttackButtonPressedEvent);
     }
+
+    private void OnLightAttackButtonPressedEvent(object sender, EventArgs e)
+    {
+        Debug.Log("IdleState OnLightAttackButtonPressedEvent");
+        Exit(new LightAttackState(playerBehaviour));
+    }
+
     private void OnHeavyAttackButtonPressedEvent(object sender, EventArgs e)
     {
         Debug.Log("IdleState OnHeavyAttackButtonPressedEvent");
@@ -34,6 +42,8 @@ public class IdleState : BasePlayerState
     {
         base.Exit(nextState);
         behaviour.StopListeningToEvent<HeavyAttackButtonPressedEvent>(OnHeavyAttackButtonPressedEvent);
+        behaviour.StopListeningToEvent<LightAttackButtonPressedEvent>(OnLightAttackButtonPressedEvent);
     }
+
 }
 

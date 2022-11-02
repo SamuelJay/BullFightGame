@@ -47,8 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe45e34ef525d98498d8d1e7eb8425e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heavyAttackStrength: 15
-  heavyAttackCooldown: 0.2
+  heavyAttackStrength: 20
+  heavyAttackCooldown: 2
+  lightAttackStrength: 10
+  lightAttackCooldown: 1
+  lookRotationSpeed: 10
 --- !u!54 &1337196240364503205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -194,7 +197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2706816705444371444}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7115697957875396183
 MonoBehaviour:
@@ -274,7 +277,7 @@ Transform:
   m_Children:
   - {fileID: 2483387124738775965}
   m_Father: {fileID: 372520493776051327}
-  m_RootOrder: -1
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &208102951184507921
 MonoBehaviour:
