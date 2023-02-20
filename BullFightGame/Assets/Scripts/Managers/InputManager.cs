@@ -36,6 +36,16 @@ public class InputManager : Manager
             Debug.Log("InputController mouse1 Pressed");
             TriggerEvent<LightAttackButtonPressedEvent>(new LightAttackButtonPressedEvent());
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("InputController Q Pressed");
+            TriggerEvent<DodgeButtonPressedEvent>(new DodgeButtonPressedEvent());
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("InputController E Pressed");
+            TriggerEvent<DodgeButtonPressedEvent>(new DodgeButtonPressedEvent());
+        }
     }
 
 }

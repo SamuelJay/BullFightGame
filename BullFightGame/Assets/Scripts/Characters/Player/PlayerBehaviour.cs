@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PlayerBehaviour : BaseCharacterBehaviour
 {
-    [SerializeField] private float heavyAttackStrength;
     private Rigidbody rigidBody;
+
+    [SerializeField] private float heavyAttackStrength;
     [SerializeField] private float heavyAttackCooldown;
 
     [SerializeField] private float lightAttackStrength;
     [SerializeField] private float lightAttackCooldown;
+
     [SerializeField] private float lookRotationSpeed;
+
+    [SerializeField] private float dodgeSpeed;
+    [SerializeField] private float dodgeCooldown;
+
 
     public float GetHeavyAttackCooldown() 
     { 
@@ -22,6 +28,10 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         return lightAttackCooldown;
     }
 
+    public float GetDodgeCooldown()
+    {
+        return dodgeCooldown;
+    }
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
         base.Setup(baseManagerHelperIn);
@@ -44,6 +54,12 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     public void LightAttack()
     {
         Vector3 force = transform.forward * lightAttackStrength;
+        rigidBody.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void Dodge()
+    {
+        Vector3 force = transform.forward * dodgeSpeed;
         rigidBody.AddForce(force, ForceMode.Impulse);
     }
 }
