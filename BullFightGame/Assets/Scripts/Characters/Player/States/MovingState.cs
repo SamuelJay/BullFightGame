@@ -25,11 +25,11 @@ public class MovingState : BasePlayerState
     public override void UpdateState()
     {
         base.UpdateState();
-        if (inputManager.inputAxis.magnitude < threshold)
+        if (inputHandler.movementInput.magnitude < threshold)
         {
             Exit(new IdleState(playerBehaviour));
         }
-        playerBehaviour.transform.position += inputManager.inputAxis * speed;
+        playerBehaviour.transform.position += inputHandler.movementInput * speed;
     }
     public override void Exit(State nextState)
     {

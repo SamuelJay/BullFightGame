@@ -33,7 +33,7 @@ public class IdleState : BasePlayerState
     public override void UpdateState()
     {
         base.UpdateState();
-        if (inputManager.inputAxis.magnitude > threshold)
+        if (inputHandler.movementInput.magnitude > threshold)
         {
             Exit(new MovingState(playerBehaviour));
         }

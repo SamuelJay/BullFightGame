@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBehaviour : BaseCharacterBehaviour
 {
     public InputHandler inputHandler { get; private set; }
-
     [SerializeField] private float heavyAttackStrength;
     [SerializeField] private float heavyAttackCooldown;
     [SerializeField] private float lightAttackStrength;
@@ -44,7 +43,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     private void Update()
     {
         state.UpdateState();
-        transform.Rotate(0, Input.GetAxis("Mouse X") * lookRotationSpeed, 0);
+        transform.Rotate(0, inputHandler.lookInput * lookRotationSpeed, 0);
     }
 
     public void HeavyAttack()

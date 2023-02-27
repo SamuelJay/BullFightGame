@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class InputHandler : MrPigBaseBehaviour
 {
     public InputActions inputActions;
-    public Vector2 movementInput { get; private set; }
+    public Vector3 movementInput { get; private set; }
+    public float lookInput { get; private set; }
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
         inputActions = new InputActions();
@@ -15,6 +16,9 @@ public class InputHandler : MrPigBaseBehaviour
     }
     void FixedUpdate()
     {
-        movementInput = inputActions.PlayerInput.Movement.ReadValue<Vector2>();
+        lookInput = inputActions.PlayerInput.Look.ReadValue<float>();
+        Vector2 movementInputVector2 = inputActions.PlayerInput.Movement.ReadValue<Vector2>();
+
+        movementInput = transform.right * movementInputVector2.x + transform.forward * movementInputVector2.y;
     }
 }

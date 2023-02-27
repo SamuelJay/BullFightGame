@@ -51,7 +51,7 @@ MonoBehaviour:
   heavyAttackCooldown: 2
   lightAttackStrength: 10
   lightAttackCooldown: 1
-  lookRotationSpeed: 10
+  lookRotationSpeed: 2
   dodgeSpeed: 0
   dodgeCooldown: 0
 --- !u!54 &1337196240364503205
