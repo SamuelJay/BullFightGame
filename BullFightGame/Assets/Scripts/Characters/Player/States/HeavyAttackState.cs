@@ -13,7 +13,7 @@ public class HeavyAttackState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("HEAVYATTACK");
+        //Debug.Log("HeavyAttackState");
         playerBehaviour.HeavyAttack();
     }
     public override void UpdateState()

@@ -10,9 +10,9 @@ public class BaseCharacterBehaviour : StateMachine
     // Start is called before the first frame update
 
 
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    public override void Setup(BaseManagerHelper baseManagerHelper)
     {
-        base.Setup(baseManagerHelperIn);
+        base.Setup(baseManagerHelper);
         Debug.Log("Manager Helper "+(managerHelper==null)+ " Input Manager " + (inputManager == null));
         //inputController = gameObject.AddComponent<InputManager>();
         //inputController.Setup(baseManagerHelper);

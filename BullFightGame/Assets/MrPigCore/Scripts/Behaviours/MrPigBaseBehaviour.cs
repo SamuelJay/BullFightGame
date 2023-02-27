@@ -17,9 +17,9 @@ namespace MrPigCore
                 return baseManagerHelper.eventManager;
             }
         }
-        public virtual void Setup(BaseManagerHelper baseManagerHelperIn)
+        public virtual void Setup(BaseManagerHelper baseManagerHelper)
         {
-            baseManagerHelper = baseManagerHelperIn;
+            this.baseManagerHelper = baseManagerHelper;
         }
 
         public void TriggerEvent<T>(BaseEvent eventArgs)
