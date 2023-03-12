@@ -8,15 +8,18 @@ public class DodgeState : BasePlayerState
 {
     private float cooldown => playerBehaviour.GetDodgeCooldown();
     private float counter;
-    public DodgeState(PlayerBehaviour behaviourIn) : base(behaviourIn)
+    private int direction;
+    public DodgeState(PlayerBehaviour behaviourIn, int direction) : base(behaviourIn)
     {
+        Debug.Log("DodgeState DodgeState");
+        this.direction = direction;
     }
 
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Dodge");
-        playerBehaviour.Dodge();
+        Debug.Log("DodgeState Enter");
+        playerBehaviour.Dodge(direction);
     }
     public override void UpdateState()
     {

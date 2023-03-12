@@ -51,9 +51,9 @@ MonoBehaviour:
   heavyAttackCooldown: 2
   lightAttackStrength: 10
   lightAttackCooldown: 1
-  lookRotationSpeed: 2
-  dodgeSpeed: 0
-  dodgeCooldown: 0
+  lookRotationSpeed: 0.1
+  dodgeSpeed: 10
+  dodgeCooldown: 2
 --- !u!54 &1337196240364503205
 Rigidbody:
   m_ObjectHideFlags: 0

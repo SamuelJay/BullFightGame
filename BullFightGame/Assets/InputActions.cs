@@ -44,6 +44,42 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HeavyAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""19ebe5f8-9398-49c3-a2a0-ae2b59a9708b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LightAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe72a60c-6825-48bc-990a-7f5d2479e8fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftDodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""670e8201-b3d8-4a55-9b5a-9593299fc19c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightDodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""502669aa-01f1-447f-9ac9-d938028342a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +214,94 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7af7ee22-68e0-445e-941e-d071f43d3afc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1f84392-4412-42d1-8836-ee05bd10f729"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f84909a-1bb6-4e3b-a848-34b8e5b54bec"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9223764-b6a7-46b6-be96-28cfd3b3c2c9"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87431ddd-a8d5-40d1-b858-25a7b39819d3"",
+                    ""path"": ""<Keyboard>/#(Q)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftDodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8817106d-1925-4100-81ca-1447cfe7b8aa"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftDodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""adaf9a4b-dbcf-4cff-b08e-685db2f3b373"",
+                    ""path"": ""<Keyboard>/#(E)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightDodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a73d4c6-bb68-4625-80c8-2184ea62513b"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightDodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +312,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_PlayerInput = asset.FindActionMap("PlayerInput", throwIfNotFound: true);
         m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInput_Look = m_PlayerInput.FindAction("Look", throwIfNotFound: true);
+        m_PlayerInput_HeavyAttack = m_PlayerInput.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_PlayerInput_LightAttack = m_PlayerInput.FindAction("LightAttack", throwIfNotFound: true);
+        m_PlayerInput_LeftDodge = m_PlayerInput.FindAction("LeftDodge", throwIfNotFound: true);
+        m_PlayerInput_RightDodge = m_PlayerInput.FindAction("RightDodge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,12 +379,20 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IPlayerInputActions> m_PlayerInputActionsCallbackInterfaces = new List<IPlayerInputActions>();
     private readonly InputAction m_PlayerInput_Movement;
     private readonly InputAction m_PlayerInput_Look;
+    private readonly InputAction m_PlayerInput_HeavyAttack;
+    private readonly InputAction m_PlayerInput_LightAttack;
+    private readonly InputAction m_PlayerInput_LeftDodge;
+    private readonly InputAction m_PlayerInput_RightDodge;
     public struct PlayerInputActions
     {
         private @InputActions m_Wrapper;
         public PlayerInputActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
         public InputAction @Look => m_Wrapper.m_PlayerInput_Look;
+        public InputAction @HeavyAttack => m_Wrapper.m_PlayerInput_HeavyAttack;
+        public InputAction @LightAttack => m_Wrapper.m_PlayerInput_LightAttack;
+        public InputAction @LeftDodge => m_Wrapper.m_PlayerInput_LeftDodge;
+        public InputAction @RightDodge => m_Wrapper.m_PlayerInput_RightDodge;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +408,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @HeavyAttack.started += instance.OnHeavyAttack;
+            @HeavyAttack.performed += instance.OnHeavyAttack;
+            @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @LightAttack.started += instance.OnLightAttack;
+            @LightAttack.performed += instance.OnLightAttack;
+            @LightAttack.canceled += instance.OnLightAttack;
+            @LeftDodge.started += instance.OnLeftDodge;
+            @LeftDodge.performed += instance.OnLeftDodge;
+            @LeftDodge.canceled += instance.OnLeftDodge;
+            @RightDodge.started += instance.OnRightDodge;
+            @RightDodge.performed += instance.OnRightDodge;
+            @RightDodge.canceled += instance.OnRightDodge;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -282,6 +430,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @HeavyAttack.started -= instance.OnHeavyAttack;
+            @HeavyAttack.performed -= instance.OnHeavyAttack;
+            @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @LightAttack.started -= instance.OnLightAttack;
+            @LightAttack.performed -= instance.OnLightAttack;
+            @LightAttack.canceled -= instance.OnLightAttack;
+            @LeftDodge.started -= instance.OnLeftDodge;
+            @LeftDodge.performed -= instance.OnLeftDodge;
+            @LeftDodge.canceled -= instance.OnLeftDodge;
+            @RightDodge.started -= instance.OnRightDodge;
+            @RightDodge.performed -= instance.OnRightDodge;
+            @RightDodge.canceled -= instance.OnRightDodge;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -303,5 +463,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnLightAttack(InputAction.CallbackContext context);
+        void OnLeftDodge(InputAction.CallbackContext context);
+        void OnRightDodge(InputAction.CallbackContext context);
     }
 }

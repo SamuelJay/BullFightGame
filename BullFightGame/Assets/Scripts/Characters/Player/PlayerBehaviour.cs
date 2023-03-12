@@ -58,9 +58,9 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         rigidBody.AddForce(force, ForceMode.Impulse);
     }
 
-    public void Dodge()
+    public void Dodge(int direction)
     {
-        Vector3 force = transform.forward * dodgeSpeed;
+        Vector3 force = transform.right * dodgeSpeed *direction;
         rigidBody.AddForce(force, ForceMode.Impulse);
     }
 }

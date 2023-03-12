@@ -7,6 +7,7 @@ namespace MrPigCore
 
         public virtual void SetState(State newState) {
             state = newState;
+            state.Enter();
         }
     }
 }
