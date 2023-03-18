@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,14 +27,30 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         rigidBody = GetComponent<Rigidbody>();       
     }
 
+    public void ApplyDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log($"{id} I was Hit ! damage {damage} remaining health {health}");
+    }
+
     public float GetHeavyAttackCooldown() 
     { 
         return heavyAttackCooldown;
+    }
+    
+    public float GetHeavyAttackStrength() 
+    { 
+        return heavyAttackStrength;
     }
 
     public float GetLightAttackCooldown()
     {
         return lightAttackCooldown;
+    }
+    
+    public float GetLightAttackStrength()
+    {
+        return lightAttackStrength;
     }
 
     public float GetDodgeCooldown()

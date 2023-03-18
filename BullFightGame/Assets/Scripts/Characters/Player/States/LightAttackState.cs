@@ -1,4 +1,5 @@
 using MrPigCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,18 @@ public class LightAttackState : BasePlayerState
         base.Enter();
         //Debug.Log("LIGHTATTACK");
         playerBehaviour.LightAttack();
+        playerBehaviour.StartListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
     }
+    private void OnCollidedWithEnemyEvent(object sender, EventArgs e)
+    {
+        CollidedWithEnemyEvent collidedWithEnemyEvent = (CollidedWithEnemyEvent)e;
+
+        if (collidedWithEnemyEvent.hitPlayer != playerBehaviour)
+        {
+            collidedWithEnemyEvent.hitPlayer.ApplyDamage(playerBehaviour.GetLightAttackStrength());
+        }
+    }
+
     public override void UpdateState()
     {
         base.UpdateState();
@@ -26,6 +38,7 @@ public class LightAttackState : BasePlayerState
     }
     public override void Exit(State nextState)
     {
+        playerBehaviour.StopListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
         base.Exit(nextState);
     }
 }

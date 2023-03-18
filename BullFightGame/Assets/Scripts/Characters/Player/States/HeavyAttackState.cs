@@ -1,4 +1,5 @@
 using MrPigCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,19 @@ public class HeavyAttackState : BasePlayerState
         base.Enter();
         //Debug.Log("HeavyAttackState");
         playerBehaviour.HeavyAttack();
+        playerBehaviour.StartListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
     }
+
+    private void OnCollidedWithEnemyEvent(object sender, EventArgs e)
+    {
+        CollidedWithEnemyEvent collidedWithEnemyEvent = (CollidedWithEnemyEvent)e;
+        
+        if (collidedWithEnemyEvent.hitPlayer != playerBehaviour) 
+        {
+            collidedWithEnemyEvent.hitPlayer.ApplyDamage(playerBehaviour.GetHeavyAttackStrength());
+        }
+    }
+
     public override void UpdateState()
     {
         base.UpdateState();
@@ -27,6 +40,8 @@ public class HeavyAttackState : BasePlayerState
     }
     public override void Exit(State nextState)
     {
+        playerBehaviour.StopListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
         base.Exit(nextState);
+
     }
 }
