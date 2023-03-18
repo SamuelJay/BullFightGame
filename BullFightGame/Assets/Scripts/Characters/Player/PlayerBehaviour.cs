@@ -7,6 +7,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
   
     public Vector3 movementInput { get; private set; }
 
+    [SerializeField] private GameObject followCamera;
     [SerializeField] private float heavyAttackStrength;
     [SerializeField] private float heavyAttackCooldown;
     [SerializeField] private float lightAttackStrength;
@@ -18,7 +19,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     private Rigidbody rigidBody;
     private float lookInput;
 
-    public virtual void Setup(BaseManagerHelper baseManagerHelper, string id)
+    public override void Setup(BaseManagerHelper baseManagerHelper, string id)
     {
         base.Setup(baseManagerHelper,id);
         SetState(new IdleState(this));
@@ -45,6 +46,10 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         this.lookInput = lookInput;
     }
     
+    public void ActivateFollowCamera ()
+    {
+        followCamera.SetActive(true);
+    }
     public void SetMovementInput(Vector3 movementInput) 
     {
         this.movementInput = movementInput;

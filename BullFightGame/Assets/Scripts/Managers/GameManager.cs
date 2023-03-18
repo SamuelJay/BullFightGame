@@ -42,6 +42,7 @@ public class GameManager : Manager
         GameObject player1Object = Instantiate(playerPrefab);
         playerBehaviour = player1Object.GetComponent<PlayerBehaviour>();
         playerBehaviour.Setup(managerHelper, "player");
+        playerBehaviour.ActivateFollowCamera();
         InputHandler inputHandler= player1Object.AddComponent<InputHandler>();
         inputHandler.Setup(managerHelper);
         

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe45e34ef525d98498d8d1e7eb8425e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followCamera: {fileID: 8164448053705482260}
   heavyAttackStrength: 20
   heavyAttackCooldown: 2
   lightAttackStrength: 10
@@ -283,7 +284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2706816705444371444
 Transform:
   m_ObjectHideFlags: 0

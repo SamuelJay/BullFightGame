@@ -10,7 +10,7 @@ public class BaseCharacterBehaviour : StateMachine
     protected int startHealth;
     protected string id;
    
-    public void Setup(BaseManagerHelper baseManagerHelper, string id)
+    public virtual void Setup(BaseManagerHelper baseManagerHelper, string id)
     {
         base.Setup(baseManagerHelper);
         this.id = id;
