@@ -6,8 +6,9 @@ using UnityEngine;
 public class GameManager : Manager
 {
     [SerializeField] private GameObject playerPrefab;
-    private GameObject playerObject;
+    
     public PlayerBehaviour playerBehaviour { get; private set; }
+    public PlayerBehaviour otherPlayerBehaviour { get; private set; }
     [SerializeField] private GameObject ringPrefab;
     private GameObject ringObject;
     public ManagerHelper managerHelper
@@ -38,8 +39,14 @@ public class GameManager : Manager
     private void SetupLevel ()
     {
         ringObject = Instantiate(ringPrefab);
-        playerObject = Instantiate(playerPrefab);
-        playerBehaviour = playerObject.GetComponent<PlayerBehaviour>();
-        playerBehaviour.Setup(managerHelper);
+        GameObject player1Object = Instantiate(playerPrefab);
+        playerBehaviour = player1Object.GetComponent<PlayerBehaviour>();
+        playerBehaviour.Setup(managerHelper, "player");
+        InputHandler inputHandler= player1Object.AddComponent<InputHandler>();
+        inputHandler.Setup(managerHelper);
+        
+        GameObject player2Object = Instantiate(playerPrefab);
+        otherPlayerBehaviour = player2Object.GetComponent<PlayerBehaviour>();
+        otherPlayerBehaviour.Setup(managerHelper, "notThePlayer");
     }
 }

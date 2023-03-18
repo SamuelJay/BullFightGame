@@ -12,7 +12,7 @@ public class LightAttackState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("LIGHTATTACK");
+        //Debug.Log("LIGHTATTACK");
         playerBehaviour.LightAttack();
     }
     public override void UpdateState()

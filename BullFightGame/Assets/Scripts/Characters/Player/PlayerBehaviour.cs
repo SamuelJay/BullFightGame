@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerBehaviour : BaseCharacterBehaviour
 {
-    
+  
     public Vector3 movementInput { get; private set; }
+
     [SerializeField] private float heavyAttackStrength;
     [SerializeField] private float heavyAttackCooldown;
     [SerializeField] private float lightAttackStrength;
@@ -17,11 +18,11 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     private Rigidbody rigidBody;
     private float lookInput;
 
-    public override void Setup(BaseManagerHelper baseManagerHelper)
+    public virtual void Setup(BaseManagerHelper baseManagerHelper, string id)
     {
-        base.Setup(baseManagerHelper);
+        base.Setup(baseManagerHelper,id);
         SetState(new IdleState(this));
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();       
     }
 
     public float GetHeavyAttackCooldown() 
@@ -47,6 +48,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     public void SetMovementInput(Vector3 movementInput) 
     {
         this.movementInput = movementInput;
+        
     }
 
     public void HeavyAttack()
@@ -91,4 +93,5 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         state.UpdateState();
         transform.Rotate(0, lookInput * lookRotationSpeed, 0);
     }
+    
 }

@@ -10,7 +10,7 @@ public class MovingState : BasePlayerState
     protected float speed = 0.025f;
     public MovingState(PlayerBehaviour behaviourIn) : base(behaviourIn)
     {
-        Debug.Log("MovingState MovingState");
+        //Debug.Log("MovingState MovingState");
     }
 
     public override void Enter()

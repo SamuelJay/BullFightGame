@@ -12,6 +12,7 @@ public class InputHandler : MrPigBaseBehaviour
     public float lookInput { get; private set; }
     private PlayerBehaviour playerBehaviour;
 
+    private StateMachine stateMachine;
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
         base.Setup(baseManagerHelperIn);

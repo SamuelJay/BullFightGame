@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class IdleState : BasePlayerState
 {
+    
     public IdleState(PlayerBehaviour behaviourIn) : base(behaviourIn)
     {
-        Debug.Log("IdleState IdleState");
+        //Debug.Log("IdleState IdleState");
     }
 
     public override void Enter()

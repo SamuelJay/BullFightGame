@@ -11,14 +11,14 @@ public class DodgeState : BasePlayerState
     private int direction;
     public DodgeState(PlayerBehaviour behaviourIn, int direction) : base(behaviourIn)
     {
-        Debug.Log("DodgeState DodgeState");
+        //Debug.Log("DodgeState DodgeState");
         this.direction = direction;
     }
 
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("DodgeState Enter");
+        //Debug.Log("DodgeState Enter");
         playerBehaviour.Dodge(direction);
     }
     public override void UpdateState()

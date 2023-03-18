@@ -12,7 +12,7 @@ namespace MrPigCore
         public State(StateMachine behaviourIn)
         {
             behaviour = behaviourIn;
-            Enter();
+            
         }
 
         public virtual void UpdateState() { }
