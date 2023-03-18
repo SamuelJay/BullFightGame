@@ -1,8 +1,6 @@
 ﻿//this is the base manager
 //don't fuck up the base!!
-namespace MrPigCore
-{
-    public class Manager : MrPigBaseBehaviour
+    public class Manager : BaseBehaviour
     {
 
         public override void Setup(BaseManagerHelper baseManagerHelperIn)
@@ -10,4 +8,3 @@ namespace MrPigCore
             base.Setup(baseManagerHelperIn);
         }
     }
-}

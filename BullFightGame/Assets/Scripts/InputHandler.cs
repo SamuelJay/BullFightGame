@@ -1,11 +1,10 @@
-using MrPigCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputHandler : MrPigBaseBehaviour
+public class InputHandler : BaseBehaviour
 {
     public InputActions inputActions;
     public Vector3 movementInput { get; private set; }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MrPigCore {
     public class BaseSceneLoaderManager : Manager {
         //public virtual  enum Scenes();
 
@@ -15,4 +14,3 @@ namespace MrPigCore {
             SceneManager.UnloadSceneAsync(sceneNumber);
         }
     }
-}

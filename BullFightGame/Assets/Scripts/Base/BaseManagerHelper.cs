@@ -1,10 +1,8 @@
-using MrPigCore;
-using MrPigEvents;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseManagerHelper : MrPigBaseBehaviour
+public abstract class BaseManagerHelper : BaseBehaviour
 {
     [SerializeField] private GameObject eventManagerPrefab;
     private GameObject eventManagerObject;

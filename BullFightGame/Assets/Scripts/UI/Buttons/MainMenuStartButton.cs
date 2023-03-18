@@ -1,7 +1,4 @@
-using MrPigCore;
-using MrPigEvents;
-
-public class MainMenuStartButton : MrPigBaseBehaviour
+public class MainMenuStartButton : BaseBehaviour
 {
     public void OnButtonClicked()
     {

@@ -1,5 +1,3 @@
-using MrPigCore;
-
 using UnityEngine;
 
 public class InputManager : Manager

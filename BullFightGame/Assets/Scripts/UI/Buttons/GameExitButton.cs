@@ -1,7 +1,4 @@
-using MrPigCore;
-using MrPigEvents;
-
-public class GameExitButton : MrPigBaseBehaviour
+public class GameExitButton : BaseBehaviour
 {
    
     public void OnButtonClicked()
