@@ -10,6 +10,7 @@ public class InputHandler : MrPigBaseBehaviour
     public InputActions inputActions;
     public Vector3 movementInput { get; private set; }
     public float lookInput { get; private set; }
+    private PlayerBehaviour playerBehaviour;
 
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
@@ -18,35 +19,38 @@ public class InputHandler : MrPigBaseBehaviour
         inputActions.PlayerInput.Enable();
         inputActions.PlayerInput.HeavyAttack.performed += OnHeavyAttackPerformed;
         inputActions.PlayerInput.LightAttack.performed += OnLightAttackPerformed;
-        inputActions.PlayerInput.RightDodge.performed += OnRightDogdePerformed;
-        inputActions.PlayerInput.LeftDodge.performed += OnLeftDogdePerformed;
+        inputActions.PlayerInput.RightDodge.performed += OnRightDodgePerformed;
+        inputActions.PlayerInput.LeftDodge.performed += OnLeftDodgePerformed;
+        playerBehaviour = GetComponent<PlayerBehaviour>();
     }
 
     private void OnLightAttackPerformed(InputAction.CallbackContext obj)
     {
-        TriggerEvent<LightAttackButtonPressedEvent>(new LightAttackButtonPressedEvent());
+        playerBehaviour.LightAttackPressed();
     }
 
     private void OnHeavyAttackPerformed(InputAction.CallbackContext obj)
     {
-        TriggerEvent<HeavyAttackButtonPressedEvent>(new HeavyAttackButtonPressedEvent());
+        playerBehaviour.HeavyAttackPressed();
     }
 
-    private void OnLeftDogdePerformed(InputAction.CallbackContext obj)
+    private void OnLeftDodgePerformed(InputAction.CallbackContext obj)
     {
-        TriggerEvent<LeftDodgePressedEvent>(new LeftDodgePressedEvent());
+        playerBehaviour.LeftDodgePressed();
     } 
     
-    private void OnRightDogdePerformed(InputAction.CallbackContext obj)
+    private void OnRightDodgePerformed(InputAction.CallbackContext obj)
     {
-        TriggerEvent<RightDodgePressedEvent>(new RightDodgePressedEvent());
+        playerBehaviour.RightDodgePressed();
     }
 
     void FixedUpdate()
     {
         lookInput = inputActions.PlayerInput.Look.ReadValue<float>();
+        playerBehaviour.SetLookInput(lookInput);
         Vector2 movementInputVector2 = inputActions.PlayerInput.Movement.ReadValue<Vector2>();
 
         movementInput = transform.right * movementInputVector2.x + transform.forward * movementInputVector2.y;
+        playerBehaviour.SetMovementInput(movementInput);
     }
 }

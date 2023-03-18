@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBehaviour : BaseCharacterBehaviour
 {
-    public InputHandler inputHandler { get; private set; }
+    
+    public Vector3 movementInput { get; private set; }
     [SerializeField] private float heavyAttackStrength;
     [SerializeField] private float heavyAttackCooldown;
     [SerializeField] private float lightAttackStrength;
@@ -12,18 +13,15 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     [SerializeField] private float lookRotationSpeed;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
-
+    private BasePlayerState playerState => state as BasePlayerState;
     private Rigidbody rigidBody;
+    private float lookInput;
 
     public override void Setup(BaseManagerHelper baseManagerHelper)
     {
         base.Setup(baseManagerHelper);
         SetState(new IdleState(this));
-
-        inputHandler = gameObject.AddComponent<InputHandler>();
         rigidBody = GetComponent<Rigidbody>();
-
-        inputHandler.Setup(managerHelper);
     }
 
     public float GetHeavyAttackCooldown() 
@@ -40,10 +38,15 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     {
         return dodgeCooldown;
     }
-    private void Update()
+
+    public void SetLookInput(float lookInput) 
     {
-        state.UpdateState();
-        transform.Rotate(0, inputHandler.lookInput * lookRotationSpeed, 0);
+        this.lookInput = lookInput;
+    }
+    
+    public void SetMovementInput(Vector3 movementInput) 
+    {
+        this.movementInput = movementInput;
     }
 
     public void HeavyAttack()
@@ -62,5 +65,30 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     {
         Vector3 force = transform.right * dodgeSpeed *direction;
         rigidBody.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void HeavyAttackPressed()
+    {
+        playerState.HeavyAttack();
+    }
+
+    public void LightAttackPressed()
+    {
+        playerState.LightAttack();
+    }
+
+    public void LeftDodgePressed()
+    {
+        playerState.LeftDodge();
+    }
+    
+    public void RightDodgePressed()
+    {
+        playerState.RightDodge();
+    }
+    private void Update()
+    {
+        state.UpdateState();
+        transform.Rotate(0, lookInput * lookRotationSpeed, 0);
     }
 }

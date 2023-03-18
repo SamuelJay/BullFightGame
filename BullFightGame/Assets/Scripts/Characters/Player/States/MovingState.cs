@@ -17,49 +17,48 @@ public class MovingState : BasePlayerState
     {
         base.Enter();
         Debug.Log("MovingState Enter");
-        behaviour.StartListeningToEvent<HeavyAttackButtonPressedEvent>(OnHeavyAttackButtonPressedEvent);
-        behaviour.StartListeningToEvent<LightAttackButtonPressedEvent>(OnLightAttackButtonPressedEvent);
-        behaviour.StartListeningToEvent<RightDodgePressedEvent>(OnRightDodgePressedEvent);
-        behaviour.StartListeningToEvent<LeftDodgePressedEvent>(OnLeftDodgePressedEvent);
     }
 
-    private void OnHeavyAttackButtonPressedEvent(object sender, EventArgs e)
+    public override void HeavyAttack()
     {
+        base.HeavyAttack();
         Exit(new HeavyAttackState(playerBehaviour));
     }
 
-    private void OnLightAttackButtonPressedEvent(object sender, EventArgs e)
+    public override void LightAttack()
     {
+        base.LightAttack();
         Debug.Log("IdleState OnLightAttackButtonPressedEvent");
         Exit(new LightAttackState(playerBehaviour));
     }
 
-    private void OnLeftDodgePressedEvent(object sender, EventArgs e)
+    public override void RightDodge()
     {
-        Debug.Log("IdleState OnLeftDodgePressedEvent");
-        Exit(new DodgeState(playerBehaviour, -1));
-    }
-
-    private void OnRightDodgePressedEvent(object sender, EventArgs e)
-    {
+        base.RightDodge();
         Debug.Log("IdleState OnRightDodgePressedEvent");
         Exit(new DodgeState(playerBehaviour, 1));
     }
+
+    public override void LeftDodge()
+    {
+        base.LeftDodge();
+        Debug.Log("IdleState OnLeftDodgePressedEvent");
+        Exit(new DodgeState(playerBehaviour, -1));
+    }
+    
     public override void UpdateState()
     {
         base.UpdateState();
-        if (inputHandler.movementInput.magnitude < threshold)
+        if (playerBehaviour.movementInput.magnitude < threshold)
         {
             Exit(new IdleState(playerBehaviour));
         }
-        playerBehaviour.transform.position += inputHandler.movementInput * speed;
+        playerBehaviour.transform.position += playerBehaviour.movementInput * speed;
     }
+
     public override void Exit(State nextState)
     {
-        behaviour.StopListeningToEvent<HeavyAttackButtonPressedEvent>(OnHeavyAttackButtonPressedEvent);
-        behaviour.StopListeningToEvent<LightAttackButtonPressedEvent>(OnLightAttackButtonPressedEvent);
-        behaviour.StopListeningToEvent<RightDodgePressedEvent>(OnRightDodgePressedEvent);
-        behaviour.StopListeningToEvent<LeftDodgePressedEvent>(OnLeftDodgePressedEvent);
+        
         base.Exit(nextState);
     }
 }
