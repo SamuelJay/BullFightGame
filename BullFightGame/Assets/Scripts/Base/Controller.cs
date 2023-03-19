@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseController : BaseBehaviour
+public class Controller : BaseBehaviour
 {
 
 }

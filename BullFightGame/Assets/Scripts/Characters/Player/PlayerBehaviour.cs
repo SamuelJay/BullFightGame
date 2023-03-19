@@ -32,8 +32,9 @@ public class PlayerBehaviour : BaseCharacterBehaviour
 
     public void ApplyDamage(float damage)
     {
-        health -= damage;
         Debug.Log($"{id} I was Hit ! damage {damage} remaining health {health}");
+        health -= damage;
+        if (health <= 0) TriggerEvent<PlayerDiedEvent>(new PlayerDiedEvent(id));
     }
 
     public float GetHeavyAttackCooldown() 

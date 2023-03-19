@@ -12,7 +12,7 @@ public class LightAttackState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log("LIGHTATTACK");
+        Debug.Log($"player {playerBehaviour.GetID()} LightAttackState");
         playerBehaviour.LightAttack();
         playerBehaviour.StartListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
     }

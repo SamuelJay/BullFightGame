@@ -7,13 +7,14 @@ public class GameManager : Manager
 {
     public PlayerBehaviour player1Behaviour { get; private set; }
     public PlayerBehaviour player2Behaviour { get; private set; }
-    
+    public RingController ringController { get; private set; }
+
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private int yDistanceThreshold;
     
+    
     private SceneLoaderManager sceneLoaderManager=>managerHelper.sceneLoaderManager;
-    private GameObject ringObject;
     
     public ManagerHelper managerHelper
     {
@@ -56,23 +57,30 @@ public class GameManager : Manager
 
     public Vector3 GetRingPosition()
     {
-        return ringObject.transform.position;
+        return ringController.transform.position;
     }
 
-    private void SetupLevel ()
+    private void SetupLevel()
     {
-        ringObject = Instantiate(ringPrefab);
-        GameObject player1Object = Instantiate(playerPrefab);
+        GameObject ringObject = Instantiate(ringPrefab);
+        ringController = ringObject.GetComponent<RingController>();
+
+        GameObject player1Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(0).transform.transform.position, ringController.GetPlayerSpawnPoint(0).transform.transform.rotation);
         player1Behaviour = player1Object.GetComponent<PlayerBehaviour>();
         player1Behaviour.Setup(managerHelper, "player");
         player1Behaviour.ActivateFollowCamera();
-        InputHandler inputHandler= player1Object.AddComponent<InputHandler>();
+        InputHandler inputHandler = player1Object.AddComponent<InputHandler>();
         inputHandler.Setup(managerHelper);
-        
-        GameObject player2Object = Instantiate(playerPrefab);
+
+        GameObject player2Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(1).transform.transform.position, ringController.GetPlayerSpawnPoint(1).transform.transform.rotation);
         player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
         player2Behaviour.Setup(managerHelper, "notThePlayer");
         BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
         basicAIBrain.Setup(managerHelper, player1Behaviour);
+    }
+
+    private void OnDestroy()
+    {
+        StopListeningToEvent <PlayerDiedEvent>(OnPlayerDiedEvent);
     }
 }

@@ -26,6 +26,8 @@ public class BasicAIBrain : BaseBehaviour
         playerPosition = playerBehaviour.transform.position;
         directionToPlayer = enemyPosition-playerPosition;
         distanceToPlayer = directionToPlayer.magnitude;
+
+        transform.LookAt(enemyPosition);
         //Debug.Log($"BasicAIBrain distanceToPlayer {distanceToPlayer}");
     }
 }

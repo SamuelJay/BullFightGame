@@ -16,6 +16,11 @@ public class BaseCharacterBehaviour : StateMachine
         health = startHealth;
     }
 
+    public string GetID() 
+    {
+        return id;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         GameObject go = collision.gameObject;
@@ -23,7 +28,7 @@ public class BaseCharacterBehaviour : StateMachine
         
         if (baseCharacter != null) 
         {
-            Debug.Log($"{id} Collided with other character");
+            //Debug.Log($"{id} Collided with other character");
             TriggerEvent<CollidedWithEnemyEvent>(new CollidedWithEnemyEvent(baseCharacter));
         }
     }

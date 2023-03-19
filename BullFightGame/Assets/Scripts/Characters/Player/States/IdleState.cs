@@ -14,7 +14,7 @@ public class IdleState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("IdleState Enter");
+        Debug.Log($"player {playerBehaviour.GetID()} IdleState");
     }
 
     public override void HeavyAttack()

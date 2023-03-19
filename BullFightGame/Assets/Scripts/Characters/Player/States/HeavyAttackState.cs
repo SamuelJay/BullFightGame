@@ -13,7 +13,7 @@ public class HeavyAttackState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log("HeavyAttackState");
+        Debug.Log($"player {playerBehaviour.GetID()} HeavyAttackState");
         playerBehaviour.HeavyAttack();
         playerBehaviour.StartListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
     }
