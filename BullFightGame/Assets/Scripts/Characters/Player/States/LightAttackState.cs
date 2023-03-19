@@ -22,7 +22,7 @@ public class LightAttackState : BasePlayerState
 
         if (collidedWithEnemyEvent.hitPlayer != playerBehaviour)
         {
-            collidedWithEnemyEvent.hitPlayer.ApplyDamage(playerBehaviour.GetLightAttackStrength());
+            collidedWithEnemyEvent.hitPlayer.ApplyDamage(playerBehaviour.GetLightAttackDamage());
         }
     }
 

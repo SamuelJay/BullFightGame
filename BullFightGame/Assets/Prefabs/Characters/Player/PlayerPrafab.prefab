@@ -49,9 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   followCamera: {fileID: 8164448053705482260}
-  heavyAttackStrength: 20
+  heavyAttackForce: 20
+  heavyAttackDamage: 5
   heavyAttackCooldown: 2
-  lightAttackStrength: 10
+  lightAttackForce: 10
+  lightAttackDamage: 2
   lightAttackCooldown: 1
   lookRotationSpeed: 0.1
   dodgeSpeed: 10

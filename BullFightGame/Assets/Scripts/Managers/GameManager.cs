@@ -6,8 +6,8 @@ public class GameManager : Manager
 {
     [SerializeField] private GameObject playerPrefab;
     
-    public PlayerBehaviour playerBehaviour { get; private set; }
-    public PlayerBehaviour otherPlayerBehaviour { get; private set; }
+    public PlayerBehaviour player1Behaviour { get; private set; }
+    public PlayerBehaviour player2Behaviour { get; private set; }
     [SerializeField] private GameObject ringPrefab;
     private GameObject ringObject;
     public ManagerHelper managerHelper
@@ -39,14 +39,16 @@ public class GameManager : Manager
     {
         ringObject = Instantiate(ringPrefab);
         GameObject player1Object = Instantiate(playerPrefab);
-        playerBehaviour = player1Object.GetComponent<PlayerBehaviour>();
-        playerBehaviour.Setup(managerHelper, "player");
-        playerBehaviour.ActivateFollowCamera();
+        player1Behaviour = player1Object.GetComponent<PlayerBehaviour>();
+        player1Behaviour.Setup(managerHelper, "player");
+        player1Behaviour.ActivateFollowCamera();
         InputHandler inputHandler= player1Object.AddComponent<InputHandler>();
         inputHandler.Setup(managerHelper);
         
         GameObject player2Object = Instantiate(playerPrefab);
-        otherPlayerBehaviour = player2Object.GetComponent<PlayerBehaviour>();
-        otherPlayerBehaviour.Setup(managerHelper, "notThePlayer");
+        player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
+        player2Behaviour.Setup(managerHelper, "notThePlayer");
+        BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
+        basicAIBrain.Setup(managerHelper, player1Behaviour);
     }
 }

@@ -24,7 +24,7 @@ public class HeavyAttackState : BasePlayerState
         
         if (collidedWithEnemyEvent.hitPlayer != playerBehaviour) 
         {
-            collidedWithEnemyEvent.hitPlayer.ApplyDamage(playerBehaviour.GetHeavyAttackStrength());
+            collidedWithEnemyEvent.hitPlayer.ApplyDamage(playerBehaviour.GetHeavyAttackDamage());
         }
     }
 

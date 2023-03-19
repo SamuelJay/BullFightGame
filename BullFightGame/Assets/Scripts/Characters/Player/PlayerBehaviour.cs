@@ -9,9 +9,11 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     public Vector3 movementInput { get; private set; }
 
     [SerializeField] private GameObject followCamera;
-    [SerializeField] private float heavyAttackStrength;
+    [SerializeField] private float heavyAttackForce;
+    [SerializeField] private float heavyAttackDamage;
     [SerializeField] private float heavyAttackCooldown;
-    [SerializeField] private float lightAttackStrength;
+    [SerializeField] private float lightAttackForce;
+    [SerializeField] private float lightAttackDamage;
     [SerializeField] private float lightAttackCooldown;
     [SerializeField] private float lookRotationSpeed;
     [SerializeField] private float dodgeSpeed;
@@ -38,9 +40,9 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         return heavyAttackCooldown;
     }
     
-    public float GetHeavyAttackStrength() 
+    public float GetHeavyAttackDamage() 
     { 
-        return heavyAttackStrength;
+        return heavyAttackDamage;
     }
 
     public float GetLightAttackCooldown()
@@ -48,9 +50,9 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         return lightAttackCooldown;
     }
     
-    public float GetLightAttackStrength()
+    public float GetLightAttackDamage()
     {
-        return lightAttackStrength;
+        return lightAttackDamage;
     }
 
     public float GetDodgeCooldown()
@@ -75,13 +77,13 @@ public class PlayerBehaviour : BaseCharacterBehaviour
 
     public void HeavyAttack()
     {
-        Vector3 force = transform.forward * heavyAttackStrength;
+        Vector3 force = transform.forward * heavyAttackForce;
         rigidBody.AddForce(force, ForceMode.Impulse);
     }
 
     public void LightAttack()
     {
-        Vector3 force = transform.forward * lightAttackStrength;
+        Vector3 force = transform.forward * lightAttackForce;
         rigidBody.AddForce(force, ForceMode.Impulse);
     }
 
