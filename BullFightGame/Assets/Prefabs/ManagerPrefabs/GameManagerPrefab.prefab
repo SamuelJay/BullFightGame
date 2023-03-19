@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 283.17017, y: 264.1947, z: -73.15499}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2679005210377306308, guid: acf21bda07241c04dbb313e672e15c41, type: 3}
   ringPrefab: {fileID: 8317443195933538703, guid: 88e097d9e71b9e044874a29d2c91fcba, type: 3}
+  yDistanceThreshold: 10
