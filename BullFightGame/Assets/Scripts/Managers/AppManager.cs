@@ -5,13 +5,14 @@ public class AppManager : Manager
 {
     [SerializeField] private GameObject managerHelperPrefab;
     private GameObject managerHelperObject;
-    
+
 
     private ManagerHelper managerHelper;
-    
-    private SceneLoaderManager sceneLoaderManager 
+
+    private SceneLoaderManager sceneLoaderManager
     {
-        get {
+        get
+        {
             return managerHelper.sceneLoaderManager;
         }
     }
@@ -28,22 +29,17 @@ public class AppManager : Manager
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
         base.Setup(baseManagerHelperIn);
-        
+
         sceneLoaderManager.LoadMainMenuScene();
 
         StartListeningToEvent<MainMenuSceneLoadedEvent>(OnMainMenuSceneLoadedEvent);
         StartListeningToEvent<GameSceneLoadedEvent>(OnGameSceneLoadedEvent);
         StartListeningToEvent<MainMenuStartButtonEvent>(OnMainMenuStartButtonEvent);
-        StartListeningToEvent<GameExitButtonEvent>(OnGameExitButtonEvent);
     }
 
     private void OnMainMenuStartButtonEvent(object sender, EventArgs e)
     {
         sceneLoaderManager.LoadGameScene();
-    }
-    private void OnGameExitButtonEvent(object sender, EventArgs e)
-    {
-        sceneLoaderManager.LoadMainMenuScene();
     }
 
     private void OnMainMenuSceneLoadedEvent(object sender, EventArgs e)
@@ -60,6 +56,5 @@ public class AppManager : Manager
         StopListeningToEvent<MainMenuSceneLoadedEvent>(OnMainMenuSceneLoadedEvent);
         StopListeningToEvent<GameSceneLoadedEvent>(OnGameSceneLoadedEvent);
         StopListeningToEvent<MainMenuStartButtonEvent>(OnMainMenuStartButtonEvent);
-        StopListeningToEvent<GameExitButtonEvent>(OnGameExitButtonEvent);
     }
 }

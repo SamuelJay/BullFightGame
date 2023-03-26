@@ -35,18 +35,22 @@ public class GameManager : Manager
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
         base.Setup(baseManagerHelperIn);
-        GameObject canvasObject = uiManager.CreateCanvas("GameCanvas");
-        CanvasManager canvasManager = canvasObject.GetComponent<CanvasManager>();
+       
         StartListeningToEvent<PlayerDiedEvent>(OnPlayerDiedEvent);
-        canvasManager.Setup(managerHelper);
-        managerHelper.SetCanvasManger(canvasManager);
+        StartListeningToEvent<GameExitButtonEvent>(OnGameExitButtonEvent);
+        
         SetupLevel();
+    }
+
+    private void OnGameExitButtonEvent(object sender, EventArgs e)
+    {
+        sceneLoaderManager.LoadMainMenuScene();
     }
 
     private void OnPlayerDiedEvent(object sender, EventArgs e)
     {
         PlayerDiedEvent playerDiedEvent = (PlayerDiedEvent)e;
-        Debug.Log($"GameManager OnPlayerDiedEvent {playerDiedEvent}");
+        Debug.Log($"GameManager OnPlayerDiedEvent {playerDiedEvent.playerID}");
         sceneLoaderManager.LoadMainMenuScene();
     }
 
@@ -77,6 +81,15 @@ public class GameManager : Manager
         player2Behaviour.Setup(managerHelper, "2");
         BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
         basicAIBrain.Setup(managerHelper, player1Behaviour);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            TriggerEvent<GameExitButtonEvent>(new GameExitButtonEvent());
+        }
+        
     }
 
     private void OnDestroy()

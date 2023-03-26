@@ -8,7 +8,6 @@ public class ManagerHelper : BaseManagerHelper
     [SerializeField] private GameObject sceneLoaderManagerPrefab;
     [SerializeField] private GameObject uiManagerPrefab;
     [SerializeField] private GameObject inputManagerPrefab;
-    private CanvasManager canvasManagerInternal;
     
     private GameObject sceneLoaderManagerObject;
     private GameObject uiManagerObject;
@@ -16,35 +15,7 @@ public class ManagerHelper : BaseManagerHelper
     public SceneLoaderManager sceneLoaderManager { get; private set; }
     public UIManager uiManager { get; private set; }
     public InputManager inputManager { get; private set; }
-
-
-    private bool canvasManagerSet;
-    
-    public CanvasManager canvasManager
-    {
-        get 
-        {
-            if (canvasManagerSet)
-            {
-                return canvasManagerInternal;
-            }
-            else 
-            {
-                Debug.LogError("Canvas Manager is not set");
-                return null;
-            }
-        }
-        private set 
-        {
-            canvasManagerInternal = value;
-            canvasManagerSet = true;
-        }
-    }
-
-    public void SetCanvasManger(CanvasManager canvasManagerIn) 
-    {
-        canvasManager = canvasManagerIn;
-    }
+   
     #endregion Don't Destroy On Load
 
     #region Main Menu
@@ -78,6 +49,7 @@ public class ManagerHelper : BaseManagerHelper
         mainMenuManagerObject = Instantiate(mainMenuManagerPrefab);
         mainMenuManager = mainMenuManagerObject.GetComponent<MainMenuManager>();
         mainMenuManager.Setup(this);
+        uiManager.SetupMainMenuUI();
     }
     public void GameSetup()
     {
@@ -89,6 +61,7 @@ public class ManagerHelper : BaseManagerHelper
         
         gameManager.Setup(this);
         inputManager.Setup(this);
+        uiManager.SetupGameUI();
     }
 
 }

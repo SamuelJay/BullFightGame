@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class UIManager : Manager
 {
-    public GameObject CreateCanvas(string canvasName)
-    {
-        GameObject canvasPrefab;
-        GameObject canvasObject;
-        string canvasPath = "Canvases/" + canvasName;
-        canvasPrefab = Resources.Load(canvasPath) as GameObject;
-        canvasObject = Instantiate(canvasPrefab);
-        return canvasObject;
-    } 
+    [SerializeField] private GameObject mainMenuCanvasPrefab;
+    private GameObject mainMenuCanvasObject;
+    private MainMenuCanvasController mainMenuCanvasController;
+    [SerializeField] private GameObject gameCanvasPrefab;
+    private GameObject gameCanvasObject;
+    private GameCanvasController gameCanvasController;
 
+    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    {
+        base.Setup(baseManagerHelperIn);
+    }
+
+    public void SetupMainMenuUI()
+    {
+        mainMenuCanvasObject = Instantiate(mainMenuCanvasPrefab);
+        mainMenuCanvasController = mainMenuCanvasObject.GetComponent<MainMenuCanvasController>();
+        mainMenuCanvasController.Setup(baseManagerHelper);
+    }
+
+    public void SetupGameUI()
+    {
+        gameCanvasObject = Instantiate(gameCanvasPrefab);
+        gameCanvasController = gameCanvasObject.GetComponent<GameCanvasController>();
+        gameCanvasController.Setup(baseManagerHelper);
+    }
 }

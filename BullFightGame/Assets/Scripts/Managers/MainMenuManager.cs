@@ -22,9 +22,6 @@ public class MainMenuManager : Manager
     public override void Setup(BaseManagerHelper baseManagerHelperIn)
     {
         base.Setup(baseManagerHelperIn);
-        GameObject canvasObject= uiManager.CreateCanvas("MainMenuCanvas");
-        CanvasManager canvasManager = canvasObject.GetComponent<CanvasManager>();
-        canvasManager.Setup(managerHelper);
-        managerHelper.SetCanvasManger(canvasManager);
+        
     }
 }
