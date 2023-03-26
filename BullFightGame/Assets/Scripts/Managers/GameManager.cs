@@ -67,14 +67,14 @@ public class GameManager : Manager
 
         GameObject player1Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(0).transform.transform.position, ringController.GetPlayerSpawnPoint(0).transform.transform.rotation);
         player1Behaviour = player1Object.GetComponent<PlayerBehaviour>();
-        player1Behaviour.Setup(managerHelper, "player");
+        player1Behaviour.Setup(managerHelper, "1");
         player1Behaviour.ActivateFollowCamera();
         InputHandler inputHandler = player1Object.AddComponent<InputHandler>();
         inputHandler.Setup(managerHelper);
 
         GameObject player2Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(1).transform.transform.position, ringController.GetPlayerSpawnPoint(1).transform.transform.rotation);
         player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
-        player2Behaviour.Setup(managerHelper, "notThePlayer");
+        player2Behaviour.Setup(managerHelper, "2");
         BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
         basicAIBrain.Setup(managerHelper, player1Behaviour);
     }
