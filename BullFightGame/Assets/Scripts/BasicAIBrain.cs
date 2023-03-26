@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicAIBrain : BaseBehaviour
 {
-    [SerializeField] private int followThreshold;
+    [SerializeField] private int followThreshold = 5;
 
     private PlayerBehaviour playerBehaviour;
     private PlayerBehaviour enemyPlayerBehaviour;
@@ -16,7 +16,7 @@ public class BasicAIBrain : BaseBehaviour
     public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour)
     {
         base.Setup(baseManagerHelper);
-        playerBehaviour =GetComponent<PlayerBehaviour>();
+        playerBehaviour = GetComponent<PlayerBehaviour>();
         this.enemyPlayerBehaviour = enemyPlayerBehaviour;
     }
 
@@ -24,10 +24,26 @@ public class BasicAIBrain : BaseBehaviour
     {
         enemyPosition = enemyPlayerBehaviour.transform.position;
         playerPosition = playerBehaviour.transform.position;
-        directionToPlayer = enemyPosition-playerPosition;
+        directionToPlayer = enemyPosition - playerPosition;
         distanceToPlayer = directionToPlayer.magnitude;
 
         transform.LookAt(enemyPosition);
-        //Debug.Log($"BasicAIBrain distanceToPlayer {distanceToPlayer}");
+        if (distanceToPlayer > followThreshold)
+        {
+            playerBehaviour.SetMovementInput(directionToPlayer.normalized);
+        }
+        else
+        {
+            bool choice = (Random.value > 0.5f);
+            playerBehaviour.SetMovementInput(new Vector3());
+            if (choice)
+            {
+                playerBehaviour.HeavyAttackPressed();
+            }
+            else
+            { 
+                playerBehaviour.LightAttackPressed();
+            }
+        }
     }
 }
