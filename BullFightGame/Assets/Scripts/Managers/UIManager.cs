@@ -29,4 +29,14 @@ public class UIManager : Manager
         gameCanvasController = gameCanvasObject.GetComponent<GameCanvasController>();
         gameCanvasController.Setup(baseManagerHelper);
     }
+
+    public void ShowGameOverPanel(string losingPlayerID)
+    {
+        gameCanvasController.ShowGameOverPanel(losingPlayerID);
+    }
+
+    public void HideGameOverPanel()
+    {
+        gameCanvasController.HideGameOverPanel();
+    }
 }

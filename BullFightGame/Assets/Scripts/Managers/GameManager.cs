@@ -13,16 +13,8 @@ public class GameManager : Manager
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private int yDistanceThreshold;
     
-    
     private SceneLoaderManager sceneLoaderManager=>managerHelper.sceneLoaderManager;
-    
-    public ManagerHelper managerHelper
-    {
-        get
-        {
-            return baseManagerHelper as ManagerHelper;
-        }
-    }
+    public ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
 
     private UIManager uiManager
     {
@@ -51,7 +43,8 @@ public class GameManager : Manager
     {
         PlayerDiedEvent playerDiedEvent = (PlayerDiedEvent)e;
         Debug.Log($"GameManager OnPlayerDiedEvent {playerDiedEvent.playerID}");
-        sceneLoaderManager.LoadMainMenuScene();
+        uiManager.ShowGameOverPanel(playerDiedEvent.playerID);
+        
     }
 
     public int GetYDistanceThreshold() 
