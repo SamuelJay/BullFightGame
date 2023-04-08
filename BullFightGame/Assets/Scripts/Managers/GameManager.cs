@@ -9,6 +9,8 @@ public class GameManager : Manager
     public PlayerBehaviour player2Behaviour { get; private set; }
     public RingController ringController { get; private set; }
 
+    [SerializeField]
+    private BasicOpponentData basicOpponentData;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private int yDistanceThreshold;
@@ -73,7 +75,7 @@ public class GameManager : Manager
         player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
         player2Behaviour.Setup(managerHelper, "2");
         BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
-        basicAIBrain.Setup(managerHelper, player1Behaviour);
+        basicAIBrain.Setup(managerHelper, player1Behaviour, basicOpponentData);
     }
 
     private void Update()
