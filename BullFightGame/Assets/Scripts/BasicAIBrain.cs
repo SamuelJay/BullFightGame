@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BasicAIBrain : BaseBehaviour
 {
-    [SerializeField] private int followThreshold = 5;
 
+    private BasicOpponentData data;
     private PlayerBehaviour playerBehaviour;
     private PlayerBehaviour enemyPlayerBehaviour;
     private Vector3 enemyPosition;
@@ -13,10 +13,11 @@ public class BasicAIBrain : BaseBehaviour
     private Vector3 directionToPlayer;
     private float distanceToPlayer;
 
-    public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour)
+    public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour, BasicOpponentData data)
     {
         base.Setup(baseManagerHelper);
         playerBehaviour = GetComponent<PlayerBehaviour>();
+        this.data = data;
         this.enemyPlayerBehaviour = enemyPlayerBehaviour;
     }
 
@@ -28,7 +29,7 @@ public class BasicAIBrain : BaseBehaviour
         distanceToPlayer = directionToPlayer.magnitude;
 
         transform.LookAt(enemyPosition);
-        if (distanceToPlayer > followThreshold)
+        if (distanceToPlayer > data.GetAttackThreshold())
         {
             playerBehaviour.SetMovementInput(directionToPlayer.normalized);
         }

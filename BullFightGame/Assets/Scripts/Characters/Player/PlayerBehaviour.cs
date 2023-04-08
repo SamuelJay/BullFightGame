@@ -29,6 +29,42 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         SetState(new IdleState(this));
         rigidBody = GetComponent<Rigidbody>();       
     }
+    public void Dodge(int direction)
+    {
+        Vector3 force = transform.right * dodgeSpeed * direction;
+        rigidBody.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void SetLookInput(float lookInput)
+    {
+        this.lookInput = lookInput;
+    }
+
+    public void SetMovementInput(Vector3 movementInput)
+    {
+        this.movementInput = movementInput;
+
+    }
+
+    public void HeavyAttackPressed()
+    {
+        playerState.HeavyAttack();
+    }
+
+    public void LightAttackPressed()
+    {
+        playerState.LightAttack();
+    }
+
+    public void LeftDodgePressed()
+    {
+        playerState.LeftDodge();
+    }
+
+    public void RightDodgePressed()
+    {
+        playerState.RightDodge();
+    }
 
     public void ApplyDamage(float damage)
     {
@@ -62,20 +98,12 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         return dodgeCooldown;
     }
 
-    public void SetLookInput(float lookInput) 
-    {
-        this.lookInput = lookInput;
-    }
     
     public void ActivateFollowCamera ()
     {
         followCamera.SetActive(true);
     }
-    public void SetMovementInput(Vector3 movementInput) 
-    {
-        this.movementInput = movementInput;
-        
-    }
+  
 
     public void HeavyAttack()
     {
@@ -89,31 +117,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         rigidBody.AddForce(force, ForceMode.Impulse);
     }
 
-    public void Dodge(int direction)
-    {
-        Vector3 force = transform.right * dodgeSpeed *direction;
-        rigidBody.AddForce(force, ForceMode.Impulse);
-    }
-
-    public void HeavyAttackPressed()
-    {
-        playerState.HeavyAttack();
-    }
-
-    public void LightAttackPressed()
-    {
-        playerState.LightAttack();
-    }
-
-    public void LeftDodgePressed()
-    {
-        playerState.LeftDodge();
-    }
-    
-    public void RightDodgePressed()
-    {
-        playerState.RightDodge();
-    }
+  
     private void Update()
     {
         float yDistanceToRing = gameManager.GetRingPosition().y-transform.position.y;
