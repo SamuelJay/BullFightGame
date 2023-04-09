@@ -26,7 +26,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     public override void Setup(BaseManagerHelper baseManagerHelper, string id)
     {
         base.Setup(baseManagerHelper,id);
-        SetState(new IdleState(this));
+        SetState(new PlayerIdleState(this));
         rigidBody = GetComponent<Rigidbody>();       
     }
     public void Dodge(int direction)

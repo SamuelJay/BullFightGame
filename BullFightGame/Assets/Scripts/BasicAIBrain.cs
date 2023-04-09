@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicAIBrain : BaseBehaviour
+public class BasicAIBrain : StateMachine
 {
 
     private BasicOpponentData data;

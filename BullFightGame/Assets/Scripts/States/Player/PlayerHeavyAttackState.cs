@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyAttackState : BasePlayerState
+public class PlayerHeavyAttackState : BasePlayerState
 {
     private float cooldown => playerBehaviour.GetHeavyAttackCooldown();
     private float counter;
-    public HeavyAttackState(PlayerBehaviour behaviourIn) : base(behaviourIn)
+    public PlayerHeavyAttackState(PlayerBehaviour behaviourIn) : base(behaviourIn)
     {
     }
     public override void Enter()
@@ -34,7 +34,7 @@ public class HeavyAttackState : BasePlayerState
         counter += Time.deltaTime;
         if (counter >= cooldown)
         {
-            Exit(new IdleState(playerBehaviour));
+            Exit(new PlayerIdleState(playerBehaviour));
         }
     }
     public override void Exit(State nextState)

@@ -3,61 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : BasePlayerState
+public class PlayerMovingState : BasePlayerState
 {
-    
-    public IdleState(PlayerBehaviour behaviourIn) : base(behaviourIn)
+
+    protected float speed = 0.025f;
+    public PlayerMovingState(PlayerBehaviour behaviourIn) : base(behaviourIn)
     {
-        //Debug.Log("IdleState IdleState");
+        Debug.Log($"player {playerBehaviour.GetID()} MovingState");
     }
 
     public override void Enter()
     {
         base.Enter();
-        Debug.Log($"player {playerBehaviour.GetID()} IdleState");
+        Debug.Log("MovingState Enter");
     }
 
     public override void HeavyAttack()
     {
         base.HeavyAttack();
-        Debug.Log("IdleState HeavyAttack");
-        Exit(new HeavyAttackState(playerBehaviour));
+        Exit(new PlayerHeavyAttackState(playerBehaviour));
     }
 
     public override void LightAttack()
     {
         base.LightAttack();
         Debug.Log("IdleState OnLightAttackButtonPressedEvent");
-        Exit(new LightAttackState(playerBehaviour));
+        Exit(new PlayerLightAttackState(playerBehaviour));
     }
 
     public override void RightDodge()
     {
         base.RightDodge();
         Debug.Log("IdleState OnRightDodgePressedEvent");
-        Exit(new DodgeState(playerBehaviour, 1));
+        Exit(new PlayerDodgeState(playerBehaviour, 1));
     }
 
     public override void LeftDodge()
     {
         base.LeftDodge();
         Debug.Log("IdleState OnLeftDodgePressedEvent");
-        Exit(new DodgeState(playerBehaviour, -1));
+        Exit(new PlayerDodgeState(playerBehaviour, -1));
     }
-        
+    
     public override void UpdateState()
     {
         base.UpdateState();
-        if (playerBehaviour.movementInput.magnitude > threshold)
+        if (playerBehaviour.movementInput.magnitude < threshold)
         {
-            Exit(new MovingState(playerBehaviour));
+            Exit(new PlayerIdleState(playerBehaviour));
         }
+        playerBehaviour.transform.position += playerBehaviour.movementInput * speed;
     }
+
     public override void Exit(State nextState)
     {
         
         base.Exit(nextState);
     }
-
 }
 

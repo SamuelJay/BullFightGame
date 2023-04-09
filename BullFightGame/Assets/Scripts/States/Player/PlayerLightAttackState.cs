@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightAttackState : BasePlayerState
+public class PlayerLightAttackState : BasePlayerState
 {
     private float cooldown => playerBehaviour.GetLightAttackCooldown();
     private float counter;
-    public LightAttackState(PlayerBehaviour behaviourIn) : base(behaviourIn) {
+    public PlayerLightAttackState(PlayerBehaviour behaviourIn) : base(behaviourIn) {
     }
     public override void Enter()
     {
@@ -32,7 +32,7 @@ public class LightAttackState : BasePlayerState
         counter += Time.deltaTime;
         if (counter >= cooldown)
         {
-            Exit(new IdleState(playerBehaviour));
+            Exit(new PlayerIdleState(playerBehaviour));
         }
     }
     public override void Exit(State nextState)

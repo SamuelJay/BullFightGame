@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-public class DodgeState : BasePlayerState
+public class PlayerDodgeState : BasePlayerState
 {
     private float cooldown => playerBehaviour.GetDodgeCooldown();
     private float counter;
     private int direction;
-    public DodgeState(PlayerBehaviour behaviourIn, int direction) : base(behaviourIn)
+    public PlayerDodgeState(PlayerBehaviour behaviourIn, int direction) : base(behaviourIn)
     {
         //Debug.Log("DodgeState DodgeState");
         this.direction = direction;
@@ -26,7 +26,7 @@ public class DodgeState : BasePlayerState
         counter += Time.deltaTime;
         if (counter >= cooldown)
         {
-            Exit(new IdleState(playerBehaviour));
+            Exit(new PlayerIdleState(playerBehaviour));
         }
     }
     public override void Exit(State nextState)

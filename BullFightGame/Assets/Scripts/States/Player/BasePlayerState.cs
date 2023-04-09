@@ -18,7 +18,7 @@ public class BasePlayerState : BaseCharacterState
 
     private void OnPlayerDiedEvent(object sender, EventArgs e)
     {
-        Exit(new InactiveState(playerBehaviour));
+        Exit(new PlayerInactiveState(playerBehaviour));
     }
 
     public virtual void HeavyAttack() { }
