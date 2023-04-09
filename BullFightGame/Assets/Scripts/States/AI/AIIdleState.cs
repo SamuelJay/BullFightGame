@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIIdleState : State
+public class AIIdleState : BaseAIState
 {
-    public AIIdleState(StateMachine behaviourIn) : base(behaviourIn)
+    
+
+    public AIIdleState(StateMachine behaviour) : base(behaviour)
     {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
     }
 }

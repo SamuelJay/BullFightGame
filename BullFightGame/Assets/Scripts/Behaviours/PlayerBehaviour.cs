@@ -29,6 +29,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
         SetState(new PlayerIdleState(this));
         rigidBody = GetComponent<Rigidbody>();       
     }
+    
     public void Dodge(int direction)
     {
         Vector3 force = transform.right * dodgeSpeed * direction;

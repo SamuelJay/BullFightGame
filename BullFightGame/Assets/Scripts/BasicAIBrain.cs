@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BasicAIBrain : StateMachine
 {
+    public BasicOpponentData data { get; private set; }
+    public PlayerBehaviour playerBehaviour { get; private set; }
+    public PlayerBehaviour enemyPlayerBehaviour { get; private set; }
+    public Vector3 enemyPosition { get; private set; }
+    public Vector3 playerPosition { get; private set; }
+    public Vector3 directionToEnemy { get; private set; }
+    public float distanceToEnemy { get; private set; }
 
-    private BasicOpponentData data;
-    private PlayerBehaviour playerBehaviour;
-    private PlayerBehaviour enemyPlayerBehaviour;
-    private Vector3 enemyPosition;
-    private Vector3 playerPosition;
-    private Vector3 directionToPlayer;
-    private float distanceToPlayer;
 
     public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour, BasicOpponentData data)
     {
@@ -19,19 +19,21 @@ public class BasicAIBrain : StateMachine
         playerBehaviour = GetComponent<PlayerBehaviour>();
         this.data = data;
         this.enemyPlayerBehaviour = enemyPlayerBehaviour;
+        SetState(new AIFollowState(this));
     }
 
     private void Update()
     {
+        state.UpdateState();
         enemyPosition = enemyPlayerBehaviour.transform.position;
         playerPosition = playerBehaviour.transform.position;
-        directionToPlayer = enemyPosition - playerPosition;
-        distanceToPlayer = directionToPlayer.magnitude;
+        directionToEnemy = enemyPosition - playerPosition;
+        distanceToEnemy = directionToEnemy.magnitude;
 
         transform.LookAt(enemyPosition);
-        if (distanceToPlayer > data.GetAttackThreshold())
+        /*if (distanceToEnemy > data.GetAttackThreshold())
         {
-            playerBehaviour.SetMovementInput(directionToPlayer.normalized);
+            playerBehaviour.SetMovementInput(directionToEnemy.normalized);
         }
         else
         {
@@ -45,6 +47,6 @@ public class BasicAIBrain : StateMachine
             { 
                 playerBehaviour.LightAttackPressed();
             }
-        }
+        }*/
     }
 }
