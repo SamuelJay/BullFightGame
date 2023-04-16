@@ -28,26 +28,8 @@ public class BasicAIBrain : StateMachine
         playerPosition = transform.position;
         directionToEnemy = enemyPosition - playerPosition;
         distanceToEnemy = Vector3.Distance(enemyPosition, playerPosition);
-        //Debug.Log(distanceToEnemy);
         transform.LookAt(enemyPosition);
         state.UpdateState();
-        /*if (distanceToEnemy > data.GetAttackThreshold())
-        {
-            playerBehaviour.SetMovementInput(directionToEnemy.normalized);
-        }
-        else
-        {
-            bool choice = (Random.value > 0.5f);
-            playerBehaviour.SetMovementInput(new Vector3());
-            if (choice)
-            {
-                playerBehaviour.HeavyAttackPressed();
-            }
-            else
-            { 
-                playerBehaviour.LightAttackPressed();
-            }
-        }*/
     }
 
 
