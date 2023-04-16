@@ -13,7 +13,7 @@ public class PlayerHeavyAttackState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log($"player {playerBehaviour.GetID()} HeavyAttackState");
+        //Debug.Log($"player {playerBehaviour.GetID()} HeavyAttackState Enter()");
         playerBehaviour.HeavyAttack();
         playerBehaviour.StartListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
     }
@@ -39,6 +39,7 @@ public class PlayerHeavyAttackState : BasePlayerState
     }
     public override void Exit(State nextState)
     {
+        playerBehaviour.TriggerEvent<AttackFinishedEvent>(new AttackFinishedEvent(playerBehaviour));
         playerBehaviour.StopListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
         base.Exit(nextState);
 

@@ -9,13 +9,13 @@ public class PlayerMovingState : BasePlayerState
     protected float speed = 0.025f;
     public PlayerMovingState(PlayerBehaviour behaviourIn) : base(behaviourIn)
     {
-        Debug.Log($"player {playerBehaviour.GetID()} MovingState");
+        //Debug.Log($"player {playerBehaviour.GetID()} MovingState.Enter()");
     }
 
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("MovingState Enter");
+        //Debug.Log("MovingState Enter");
     }
 
     public override void HeavyAttack()

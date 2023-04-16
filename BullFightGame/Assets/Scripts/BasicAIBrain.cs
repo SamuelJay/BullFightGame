@@ -24,13 +24,13 @@ public class BasicAIBrain : StateMachine
 
     private void Update()
     {
-        state.UpdateState();
         enemyPosition = enemyPlayerBehaviour.transform.position;
-        playerPosition = playerBehaviour.transform.position;
+        playerPosition = transform.position;
         directionToEnemy = enemyPosition - playerPosition;
-        distanceToEnemy = directionToEnemy.magnitude;
-
+        distanceToEnemy = Vector3.Distance(enemyPosition, playerPosition);
+        //Debug.Log(distanceToEnemy);
         transform.LookAt(enemyPosition);
+        state.UpdateState();
         /*if (distanceToEnemy > data.GetAttackThreshold())
         {
             playerBehaviour.SetMovementInput(directionToEnemy.normalized);
@@ -49,4 +49,6 @@ public class BasicAIBrain : StateMachine
             }
         }*/
     }
+
+
 }

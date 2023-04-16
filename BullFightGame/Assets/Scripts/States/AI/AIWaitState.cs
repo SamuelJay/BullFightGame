@@ -9,6 +9,13 @@ public class AIWaitState : BaseAIState
     public AIWaitState(StateMachine behaviourIn) : base(behaviourIn)
     {
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log("AIWaitState.Enter()");
+    }
+
     public override void UpdateState()
     {
         base.UpdateState();

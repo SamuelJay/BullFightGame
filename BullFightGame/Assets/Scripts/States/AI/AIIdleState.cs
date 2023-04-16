@@ -10,9 +10,11 @@ public class AIIdleState : BaseAIState
     {
     }
 
+
+
     public override void Enter()
     {
         base.Enter();
-
+        Debug.Log("AIIdleState.Enter()");
     }
 }

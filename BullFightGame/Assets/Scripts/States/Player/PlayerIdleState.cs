@@ -14,34 +14,34 @@ public class PlayerIdleState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log($"player {playerBehaviour.GetID()} IdleState");
+        //Debug.Log($"player {playerBehaviour.GetID()} IdleState Enter()");
     }
 
     public override void HeavyAttack()
     {
         base.HeavyAttack();
-        Debug.Log("IdleState HeavyAttack");
+        //Debug.Log("IdleState HeavyAttack");
         Exit(new PlayerHeavyAttackState(playerBehaviour));
     }
 
     public override void LightAttack()
     {
         base.LightAttack();
-        Debug.Log("IdleState OnLightAttackButtonPressedEvent");
+        //Debug.Log("IdleState OnLightAttackButtonPressedEvent");
         Exit(new PlayerLightAttackState(playerBehaviour));
     }
 
     public override void RightDodge()
     {
         base.RightDodge();
-        Debug.Log("IdleState OnRightDodgePressedEvent");
+        //Debug.Log("IdleState OnRightDodgePressedEvent");
         Exit(new PlayerDodgeState(playerBehaviour, 1));
     }
 
     public override void LeftDodge()
     {
         base.LeftDodge();
-        Debug.Log("IdleState OnLeftDodgePressedEvent");
+        //Debug.Log("IdleState OnLeftDodgePressedEvent");
         Exit(new PlayerDodgeState(playerBehaviour, -1));
     }
         

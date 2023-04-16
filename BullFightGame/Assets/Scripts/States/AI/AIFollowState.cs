@@ -8,6 +8,12 @@ public class AIFollowState : BaseAIState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log("AIFollowState.Enter()");
+    }
+
     public override void UpdateState()
     {
         base.UpdateState();
@@ -17,6 +23,7 @@ public class AIFollowState : BaseAIState
         }
         else 
         {
+            playerBehaviour.SetMovementInput(Vector3.zero);
             Exit(new AIAttackState(basicAIBrain));
         }
         

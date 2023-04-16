@@ -17,7 +17,7 @@ public class PlayerDodgeState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log($"player {playerBehaviour.GetID()} DodgeState");
+        //Debug.Log($"player {playerBehaviour.GetID()} DodgeState Enter()");
         playerBehaviour.Dodge(direction);
     }
     public override void UpdateState()

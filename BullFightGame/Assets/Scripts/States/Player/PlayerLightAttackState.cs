@@ -12,7 +12,7 @@ public class PlayerLightAttackState : BasePlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log($"player {playerBehaviour.GetID()} LightAttackState");
+        //Debug.Log($"player {playerBehaviour.GetID()} LightAttackState.Enter()");
         playerBehaviour.LightAttack();
         playerBehaviour.StartListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
     }
@@ -37,6 +37,7 @@ public class PlayerLightAttackState : BasePlayerState
     }
     public override void Exit(State nextState)
     {
+        playerBehaviour.TriggerEvent<AttackFinishedEvent>(new AttackFinishedEvent(playerBehaviour));
         playerBehaviour.StopListeningToEvent<CollidedWithEnemyEvent>(OnCollidedWithEnemyEvent);
         base.Exit(nextState);
     }

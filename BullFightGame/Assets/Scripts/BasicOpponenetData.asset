@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6204641a3853982458f147c15a9b1631, type: 3}
   m_Name: BasicOpponenetData
   m_EditorClassIdentifier: 
-  attackThreshold: 0
+  attackThreshold: 5
+  backupAmount: 2.5

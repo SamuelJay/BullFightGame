@@ -5,10 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "BasicOpponentData", fileName = "NewOpponentData")]
 public class BasicOpponentData : ScriptableObject
 {
-    [SerializeField] private int attackThreshold;
+    [SerializeField] private float attackThreshold;
+    [SerializeField] private float backupAmount;
 
-    public int GetAttackThreshold() 
+    public float GetAttackThreshold() 
     {
         return attackThreshold;
+    }
+
+    public float GetBackupAmount()
+    {
+        return backupAmount;
     }
 }
