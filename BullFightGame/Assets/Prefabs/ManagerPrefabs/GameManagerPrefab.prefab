@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932b7049b4ca9c0469fe8450da94f1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMaterials:
+  - {fileID: 2100000, guid: e71ab1b8d9c68d64cbeef489abbc8d37, type: 2}
+  - {fileID: 2100000, guid: 265be36fc6d86de47bb18e15c805d4ab, type: 2}
   basicOpponentData: {fileID: 11400000, guid: 264bc30243f6a7e4ab3c37892dd99d8e, type: 2}
   playerPrefab: {fileID: 2679005210377306308, guid: acf21bda07241c04dbb313e672e15c41, type: 3}
   ringPrefab: {fileID: 8317443195933538703, guid: 88e097d9e71b9e044874a29d2c91fcba, type: 3}

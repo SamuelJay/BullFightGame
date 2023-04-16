@@ -9,8 +9,10 @@ public class GameManager : Manager
     public PlayerBehaviour player2Behaviour { get; private set; }
     public RingController ringController { get; private set; }
 
-    [SerializeField]
-    private BasicOpponentData basicOpponentData;
+
+    [SerializeField] private Material[] playerMaterials;
+    
+    [SerializeField] private BasicOpponentData basicOpponentData;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private int yDistanceThreshold;
@@ -65,6 +67,7 @@ public class GameManager : Manager
         ringController = ringObject.GetComponent<RingController>();
 
         GameObject player1Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(0).transform.transform.position, ringController.GetPlayerSpawnPoint(0).transform.transform.rotation);
+        player1Object.GetComponentInChildren<Renderer>().material = playerMaterials[0];
         player1Behaviour = player1Object.GetComponent<PlayerBehaviour>();
         player1Behaviour.Setup(managerHelper, "1");
         player1Behaviour.ActivateFollowCamera();
@@ -72,6 +75,7 @@ public class GameManager : Manager
         inputHandler.Setup(managerHelper);
 
         GameObject player2Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(1).transform.transform.position, ringController.GetPlayerSpawnPoint(1).transform.transform.rotation);
+        player2Object.GetComponentInChildren<Renderer>().material = playerMaterials[1];
         player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
         player2Behaviour.Setup(managerHelper, "2");
         BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
