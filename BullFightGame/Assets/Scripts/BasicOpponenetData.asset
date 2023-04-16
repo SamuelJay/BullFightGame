@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BasicOpponenetData
   m_EditorClassIdentifier: 
   attackThreshold: 5
-  backupAmount: 2.5
+  backupAmount: 6

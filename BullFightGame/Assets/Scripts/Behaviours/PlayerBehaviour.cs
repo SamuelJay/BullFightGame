@@ -19,7 +19,7 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
     private BasePlayerState playerState => state as BasePlayerState;
-    private GameManager gameManager => managerHelper.gameManager;
+    public GameManager gameManager => managerHelper.gameManager;
     private Rigidbody rigidBody;
     private float lookInput;
 
@@ -121,11 +121,8 @@ public class PlayerBehaviour : BaseCharacterBehaviour
   
     private void Update()
     {
-        float yDistanceToRing = gameManager.GetRingPosition().y-transform.position.y;
-        if (yDistanceToRing > gameManager.GetYDistanceThreshold())
-        {
-            TriggerEvent<PlayerDiedEvent>(new PlayerDiedEvent(id));
-        }
+        
+       
         state.UpdateState();
         transform.Rotate(0, lookInput * lookRotationSpeed, 0);
     }

@@ -8,6 +8,7 @@ public class GameManager : Manager
     public PlayerBehaviour player1Behaviour { get; private set; }
     public PlayerBehaviour player2Behaviour { get; private set; }
     public RingController ringController { get; private set; }
+    public ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
 
 
     [SerializeField] private Material[] playerMaterials;
@@ -18,7 +19,8 @@ public class GameManager : Manager
     [SerializeField] private int yDistanceThreshold;
     
     private SceneLoaderManager sceneLoaderManager=>managerHelper.sceneLoaderManager;
-    public ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
+    private InputHandler inputHandler;
+    private BasicAIBrain basicAIBrain;
 
     private UIManager uiManager
     {
@@ -48,6 +50,9 @@ public class GameManager : Manager
         PlayerDiedEvent playerDiedEvent = (PlayerDiedEvent)e;
         Debug.Log($"GameManager OnPlayerDiedEvent {playerDiedEvent.playerID}");
         uiManager.ShowGameOverPanel(playerDiedEvent.playerID);
+        Destroy(inputHandler);
+        Destroy(basicAIBrain);
+
         
     }
 
@@ -71,14 +76,14 @@ public class GameManager : Manager
         player1Behaviour = player1Object.GetComponent<PlayerBehaviour>();
         player1Behaviour.Setup(managerHelper, "1");
         player1Behaviour.ActivateFollowCamera();
-        InputHandler inputHandler = player1Object.AddComponent<InputHandler>();
+        inputHandler = player1Object.AddComponent<InputHandler>();
         inputHandler.Setup(managerHelper);
 
         GameObject player2Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(1).transform.transform.position, ringController.GetPlayerSpawnPoint(1).transform.transform.rotation);
         player2Object.GetComponentInChildren<Renderer>().material = playerMaterials[1];
         player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
         player2Behaviour.Setup(managerHelper, "2");
-        BasicAIBrain basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
+        basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
         basicAIBrain.Setup(managerHelper, player1Behaviour, basicOpponentData);
     }
 

@@ -31,6 +31,4 @@ public class BasicAIBrain : StateMachine
         transform.LookAt(enemyPosition);
         state.UpdateState();
     }
-
-
 }

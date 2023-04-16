@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,15 @@ public class BaseAIState : State
     {
         
     }
+    public override void Enter()
+    {
+        base.Enter();
+        playerBehaviour.StartListeningToEvent<PlayerDiedEvent>(OnPlayerDiedEvent);
 
-    
+    }
+
+    private void OnPlayerDiedEvent(object sender, EventArgs e)
+    {
+        Exit(new InactiveState(playerBehaviour));
+    }
 }

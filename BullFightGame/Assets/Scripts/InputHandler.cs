@@ -53,4 +53,12 @@ public class InputHandler : BaseBehaviour
         movementInput = transform.right * movementInputVector2.x + transform.forward * movementInputVector2.y;
         playerBehaviour.SetMovementInput(movementInput);
     }
+    private void OnDestroy()
+    {
+        inputActions.PlayerInput.HeavyAttack.performed -= OnHeavyAttackPerformed;
+        inputActions.PlayerInput.LightAttack.performed -= OnLightAttackPerformed;
+        inputActions.PlayerInput.RightDodge.performed -= OnRightDodgePerformed;
+        inputActions.PlayerInput.LeftDodge.performed -= OnLeftDodgePerformed;
+        inputActions.PlayerInput.Disable();
+    }
 }

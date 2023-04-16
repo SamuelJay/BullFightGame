@@ -7,7 +7,7 @@ public class BaseCharacterBehaviour : StateMachine
     public ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
     protected float health;
     [SerializeField] protected int startHealth;
-    protected string id;
+    public string id { get; private set; }
    
     public virtual void Setup(BaseManagerHelper baseManagerHelper, string id)
     {

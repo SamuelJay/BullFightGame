@@ -18,9 +18,19 @@ public class BasePlayerState : BaseCharacterState
 
     private void OnPlayerDiedEvent(object sender, EventArgs e)
     {
-        Exit(new PlayerInactiveState(playerBehaviour));
+        Exit(new InactiveState(playerBehaviour));
     }
-
+    
+    public override void UpdateState()
+    {
+        base.UpdateState();
+        float yDistanceToRing = playerBehaviour.gameManager.GetRingPosition().y - playerBehaviour.transform.position.y;
+        if (yDistanceToRing > playerBehaviour.gameManager.GetYDistanceThreshold())
+        {
+            playerBehaviour.TriggerEvent<PlayerDiedEvent>(new PlayerDiedEvent(playerBehaviour.id));
+        }
+    }
+    
     public virtual void HeavyAttack() { }
     public virtual void LightAttack() { }
     public virtual void LeftDodge() { }
