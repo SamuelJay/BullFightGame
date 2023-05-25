@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicAIBrain : StateMachine
-{
+public class BasicAIBrain : StateMachine {
     public BasicOpponentData data { get; private set; }
     public PlayerBehaviour playerBehaviour { get; private set; }
     public PlayerBehaviour enemyPlayerBehaviour { get; private set; }
@@ -12,9 +11,7 @@ public class BasicAIBrain : StateMachine
     public Vector3 directionToEnemy { get; private set; }
     public float distanceToEnemy { get; private set; }
 
-
-    public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour, BasicOpponentData data)
-    {
+    public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour, BasicOpponentData data) {
         base.Setup(baseManagerHelper);
         playerBehaviour = GetComponent<PlayerBehaviour>();
         this.data = data;
@@ -22,13 +19,18 @@ public class BasicAIBrain : StateMachine
         SetState(new AIFollowState(this));
     }
 
-    private void Update()
-    {
+    public void LookAtEnemy() {
+        float rotationSpeed = data.GetRotationSpeed();
+        Vector3 direction = enemyPosition - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void Update() {
         enemyPosition = enemyPlayerBehaviour.transform.position;
         playerPosition = transform.position;
         directionToEnemy = enemyPosition - playerPosition;
         distanceToEnemy = Vector3.Distance(enemyPosition, playerPosition);
-        transform.LookAt(enemyPosition);
         state.UpdateState();
     }
 }

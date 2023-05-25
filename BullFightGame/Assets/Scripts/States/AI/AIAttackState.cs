@@ -35,7 +35,7 @@ public class AIAttackState : BaseAIState
         AttackFinishedEvent attackFinishedEvent = (AttackFinishedEvent)e;
         if (attackFinishedEvent.playerBehaviour == playerBehaviour)
         {
-            Exit(new AIBackupState(basicAIBrain));
+            Exit(new AIWaitState(basicAIBrain,0.5f, new AIBackupState(behaviour)));
         }
     }
 
