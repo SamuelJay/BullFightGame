@@ -21,8 +21,7 @@ public class BasicAIBrain : StateMachine {
 
     public void LookAtEnemy() {
         float rotationSpeed = data.GetRotationSpeed();
-        Vector3 direction = enemyPosition - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 

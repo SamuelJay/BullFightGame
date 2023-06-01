@@ -20,7 +20,7 @@ public class AIBackupState : BaseAIState
     public override void UpdateState()
     {
         base.UpdateState();
-        Debug.Log($"AIBackupState DistanceToEnemy {basicAIBrain.distanceToEnemy} BackupAmount {data.GetBackupAmount()} {basicAIBrain.distanceToEnemy < data.GetBackupAmount()}");
+        //Debug.Log($"AIBackupState DistanceToEnemy {basicAIBrain.distanceToEnemy} BackupAmount {data.GetBackupAmount()} {basicAIBrain.distanceToEnemy < data.GetBackupAmount()}");
         if (Vector3.Distance(startingPostion, playerBehaviour.transform.position) < data.GetBackupAmount())
         {
             playerBehaviour.SetMovementInput(basicAIBrain.directionToEnemy.normalized * -1);
