@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackThreshold: 5
   backupAmount: 6
-  rotationSpeed: 3
+  rotationSpeed: 4
