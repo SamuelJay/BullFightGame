@@ -37,13 +37,13 @@ public class AppManager : Manager
         StartListeningToEvent<MainMenuStartButtonEvent>(OnMainMenuStartButtonEvent);
     }
 
+
     private void OnMainMenuStartButtonEvent(object sender, EventArgs e)
     {
         sceneLoaderManager.LoadGameScene();
     }
 
-    private void OnMainMenuSceneLoadedEvent(object sender, EventArgs e)
-    {
+    private void OnMainMenuSceneLoadedEvent(object sender, EventArgs e) {
         managerHelper.MainMenuSetup();
     }
 
