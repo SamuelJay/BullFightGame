@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class BaseManagerHelper : BaseBehaviour
 {
-    [SerializeField] private GameObject eventManagerPrefab;
+    //all this has been copied to the appmamnager
+   /* [SerializeField] private GameObject eventManagerPrefab;
     private GameObject eventManagerObject;
     public EventManager eventManager
     {
@@ -19,5 +20,5 @@ public abstract class BaseManagerHelper : BaseBehaviour
         DontDestroyOnLoad(eventManagerObject);
         eventManager = eventManagerObject.GetComponent<EventManager>();
         eventManager.Setup(this);
-    }
+    }*/
 }

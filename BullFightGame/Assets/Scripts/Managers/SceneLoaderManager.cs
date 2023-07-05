@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class SceneLoaderManager :  BaseSceneLoaderManager
 {
 
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    public override void Setup(AppManager appManager)
     {
-        base.Setup(baseManagerHelperIn);
+        base.Setup(appManager);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

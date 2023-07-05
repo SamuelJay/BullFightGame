@@ -3,34 +3,56 @@ using UnityEngine;
 
 public class AppManager : Manager
 {
-    [SerializeField] private GameObject managerHelperPrefab;
-    private GameObject managerHelperObject;
+    public EventManager eventManager { get; private set;}
+    public SceneLoaderManager sceneLoaderManager { get; private set; }
+    public UIManager uiManager { get; private set; }
+    public InputManager inputManager { get; private set; }
+    public MainMenuManager mainMenuManager { get; private set; }
+    public GameManager gameManager { get; private set; }
 
 
-    private ManagerHelper managerHelper;
+    [SerializeField] private EventManager eventManagerPrefab;
+    [SerializeField] private SceneLoaderManager sceneLoaderManagerPrefab;
+    [SerializeField] private UIManager uiManagerPrefab;
+    [SerializeField] private InputManager inputManagerPrefab;
+    [SerializeField] private MainMenuManager mainMenuManagerPrefab;
+    [SerializeField] private GameManager gameManagerPrefab;
 
-    private SceneLoaderManager sceneLoaderManager
-    {
-        get
-        {
-            return managerHelper.sceneLoaderManager;
-        }
-    }
+
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        managerHelperObject = Instantiate(managerHelperPrefab);
-        DontDestroyOnLoad(managerHelperObject);
-        managerHelper = managerHelperObject.GetComponent<ManagerHelper>();
-        managerHelper.Setup(managerHelper, this);
-        Setup(managerHelper);
+        Setup(this);
     }
 
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
-    {
-        base.Setup(baseManagerHelperIn);
+    public override void Setup(AppManager appManager)
+    {      
+        base.Setup(appManager);
+
+        eventManager = Instantiate(eventManagerPrefab);
+        sceneLoaderManager = Instantiate(sceneLoaderManagerPrefab);
+        uiManager = Instantiate(uiManagerPrefab);
+        inputManager = Instantiate(inputManagerPrefab);
+        mainMenuManager = Instantiate(mainMenuManagerPrefab);
+        gameManager = Instantiate(gameManagerPrefab);
+
+        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(eventManager);
+        DontDestroyOnLoad(sceneLoaderManager);
+        DontDestroyOnLoad(uiManager);
+        DontDestroyOnLoad(inputManager);
+        DontDestroyOnLoad(mainMenuManager);
+        DontDestroyOnLoad(gameManager);
+
+        eventManager.Setup(this);
+        sceneLoaderManager.Setup(this);
+        uiManager.Setup(this);
+        inputManager.Setup(this);
+        mainMenuManager.Setup(this);
+        gameManager.Setup(this);
+
 
         sceneLoaderManager.LoadMainMenuScene();
+
 
         StartListeningToEvent<MainMenuSceneLoadedEvent>(OnMainMenuSceneLoadedEvent);
         StartListeningToEvent<GameSceneLoadedEvent>(OnGameSceneLoadedEvent);
@@ -44,12 +66,12 @@ public class AppManager : Manager
 
     private void OnMainMenuSceneLoadedEvent(object sender, EventArgs e)
     {
-        managerHelper.MainMenuSetup();
+       // appManager.MainMenuSetup();
     }
 
     private void OnGameSceneLoadedEvent(object sender, EventArgs e)
     {
-        managerHelper.GameSetup();
+       // appManager.GameSetup();
     }
     private void OnDestroy()
     {

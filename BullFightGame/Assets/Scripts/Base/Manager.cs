@@ -3,8 +3,7 @@
     public class Manager : BaseBehaviour
     {
 
-        public override void Setup(BaseManagerHelper baseManagerHelperIn)
-        {
-            base.Setup(baseManagerHelperIn);
-        }
+    public override void Setup(AppManager appManager) {
+        base.Setup(appManager);
     }
+}
