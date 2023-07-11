@@ -11,23 +11,23 @@ public class UIManager : Manager
     private GameObject gameCanvasObject;
     private GameCanvasController gameCanvasController;
 
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    public override void Setup(AppManager appManager)
     {
-        base.Setup(baseManagerHelperIn);
+        base.Setup(appManager);
     }
 
     public void SetupMainMenuUI()
     {
         mainMenuCanvasObject = Instantiate(mainMenuCanvasPrefab);
         mainMenuCanvasController = mainMenuCanvasObject.GetComponent<MainMenuCanvasController>();
-        mainMenuCanvasController.Setup(baseManagerHelper);
+        mainMenuCanvasController.Setup(appManager);
     }
 
     public void SetupGameUI()
     {
         gameCanvasObject = Instantiate(gameCanvasPrefab);
         gameCanvasController = gameCanvasObject.GetComponent<GameCanvasController>();
-        gameCanvasController.Setup(baseManagerHelper);
+        gameCanvasController.Setup(appManager);
     }
 
     public void ShowGameOverPanel(string losingPlayerID)

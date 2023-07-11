@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BaseCharacterBehaviour : StateMachine
 {
-    public ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
     protected float health;
     [SerializeField] protected int startHealth;
     public string id { get; private set; }
    
-    public virtual void Setup(BaseManagerHelper baseManagerHelper, string id)
+    public virtual void Setup(AppManager appManager, string id)
     {
-        base.Setup(baseManagerHelper);
+        base.Setup(appManager);
         this.id = id;
         health = startHealth;
     }

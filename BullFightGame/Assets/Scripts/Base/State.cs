@@ -5,7 +5,7 @@ public abstract class State
 {
     protected StateMachine behaviour;
 
-    protected EventManager eventManager => behaviour.baseManagerHelper.eventManager;
+    protected EventManager eventManager => behaviour.appManager.eventManager;
     public State(StateMachine behaviourIn)
     {
         behaviour = behaviourIn;

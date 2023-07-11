@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class MainMenuManager : Manager
 {
-    public ManagerHelper managerHelper
+   /* public ManagerHelper managerHelper
     {
         get
         {
             return baseManagerHelper as ManagerHelper;
         }
-    }
+    }*/
 
     private UIManager uiManager
     {
         get
         {
-            return managerHelper.uiManager;
+            return appManager.uiManager;
         }
     }
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    public override void Setup(AppManager appManager)
     {
-        base.Setup(baseManagerHelperIn);
+        base.Setup(appManager);
         
     }
 }

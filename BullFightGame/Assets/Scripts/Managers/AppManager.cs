@@ -66,17 +66,27 @@ public class AppManager : Manager
 
     private void OnMainMenuSceneLoadedEvent(object sender, EventArgs e)
     {
-       // appManager.MainMenuSetup();
+        appManager.MainMenuSetup();
     }
 
     private void OnGameSceneLoadedEvent(object sender, EventArgs e)
     {
-       // appManager.GameSetup();
+       appManager.GameSetup();
     }
     private void OnDestroy()
     {
         StopListeningToEvent<MainMenuSceneLoadedEvent>(OnMainMenuSceneLoadedEvent);
         StopListeningToEvent<GameSceneLoadedEvent>(OnGameSceneLoadedEvent);
         StopListeningToEvent<MainMenuStartButtonEvent>(OnMainMenuStartButtonEvent);
+    }
+
+    public void MainMenuSetup() {
+        mainMenuManager = Instantiate(mainMenuManagerPrefab);
+        mainMenuManager.Setup(this);
+    }
+
+    public void GameSetup() {
+        gameManager = Instantiate(gameManagerPrefab);
+        gameManager.Setup(this);
     }
 }

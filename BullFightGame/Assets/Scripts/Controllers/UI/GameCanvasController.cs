@@ -9,12 +9,11 @@ public class GameCanvasController : Controller
     [SerializeField] private Button exitButton;
     [SerializeField] private TextMeshProUGUI gameOverText;
 
-    private ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
-    private SceneLoaderManager sceneLoaderManager => managerHelper.sceneLoaderManager;
+    private SceneLoaderManager sceneLoaderManager => appManager.sceneLoaderManager;
 
-    public override void Setup(BaseManagerHelper baseManagerHelper)
+    public override void Setup(AppManager appManager)
     {
-        base.Setup(baseManagerHelper);
+        base.Setup(appManager);
         exitButton.onClick.AddListener(OnExitButton);
     }
 

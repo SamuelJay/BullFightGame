@@ -11,8 +11,8 @@ public class InputHandler : BaseBehaviour {
     private PlayerBehaviour playerBehaviour;
 
     private StateMachine stateMachine;
-    public override void Setup(BaseManagerHelper baseManagerHelperIn) {
-        base.Setup(baseManagerHelperIn);
+    public override void Setup(AppManager appManager) {
+        base.Setup(appManager);
         inputActions = new InputActions();
         inputActions.PlayerInput.Enable();
         inputActions.PlayerInput.HeavyAttack.performed += OnHeavyAttackPerformed;

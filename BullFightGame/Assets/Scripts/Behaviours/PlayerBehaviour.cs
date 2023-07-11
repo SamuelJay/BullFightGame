@@ -19,13 +19,13 @@ public class PlayerBehaviour : BaseCharacterBehaviour
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
     private BasePlayerState playerState => state as BasePlayerState;
-    public GameManager gameManager => managerHelper.gameManager;
+    public GameManager gameManager => appManager.gameManager;
     private Rigidbody rigidBody;
     private float lookInput;
 
-    public override void Setup(BaseManagerHelper baseManagerHelper, string id)
+    public override void Setup(AppManager appManager, string id)
     {
-        base.Setup(baseManagerHelper,id);
+        base.Setup(appManager,id);
         SetState(new PlayerIdleState(this));
         rigidBody = GetComponent<Rigidbody>();       
     }

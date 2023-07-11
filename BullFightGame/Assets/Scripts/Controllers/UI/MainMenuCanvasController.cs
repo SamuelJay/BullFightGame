@@ -6,9 +6,9 @@ public class MainMenuCanvasController : Controller
 {
     [SerializeField] private Button startButton;
     
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    public override void Setup(AppManager appManager)
     {
-        base.Setup(baseManagerHelperIn);
+        base.Setup(appManager);
         startButton.onClick.AddListener(StartButtonPressed);
     }
 

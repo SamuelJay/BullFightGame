@@ -11,8 +11,8 @@ public class BasicAIBrain : StateMachine {
     public Vector3 directionToEnemy { get; private set; }
     public float distanceToEnemy { get; private set; }
 
-    public void Setup(BaseManagerHelper baseManagerHelper, PlayerBehaviour enemyPlayerBehaviour, BasicOpponentData data) {
-        base.Setup(baseManagerHelper);
+    public void Setup(AppManager appManager, PlayerBehaviour enemyPlayerBehaviour, BasicOpponentData data) {
+        base.Setup(appManager);
         playerBehaviour = GetComponent<PlayerBehaviour>();
         this.data = data;
         this.enemyPlayerBehaviour = enemyPlayerBehaviour;

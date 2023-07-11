@@ -8,7 +8,6 @@ public class GameManager : Manager
     public PlayerBehaviour player1Behaviour { get; private set; }
     public PlayerBehaviour player2Behaviour { get; private set; }
     public RingController ringController { get; private set; }
-    public ManagerHelper managerHelper => baseManagerHelper as ManagerHelper;
 
 
     [SerializeField] private Material[] playerMaterials;
@@ -18,7 +17,7 @@ public class GameManager : Manager
     [SerializeField] private GameObject ringPrefab;
     [SerializeField] private int yDistanceThreshold;
     
-    private SceneLoaderManager sceneLoaderManager=>managerHelper.sceneLoaderManager;
+    private SceneLoaderManager sceneLoaderManager=>appManager.sceneLoaderManager;
     private InputHandler inputHandler;
     private BasicAIBrain basicAIBrain;
 
@@ -26,13 +25,13 @@ public class GameManager : Manager
     {
         get
         {
-            return managerHelper.uiManager;
+            return appManager.uiManager;
         }
     }
 
-    public override void Setup(BaseManagerHelper baseManagerHelperIn)
+    public override void Setup(AppManager appManager)
     {
-        base.Setup(baseManagerHelperIn);
+        base.Setup(appManager);
        
         StartListeningToEvent<PlayerDiedEvent>(OnPlayerDiedEvent);
         StartListeningToEvent<GameExitButtonEvent>(OnGameExitButtonEvent);
@@ -74,17 +73,17 @@ public class GameManager : Manager
         GameObject player1Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(0).transform.transform.position, ringController.GetPlayerSpawnPoint(0).transform.transform.rotation);
         player1Object.GetComponentInChildren<Renderer>().material = playerMaterials[0];
         player1Behaviour = player1Object.GetComponent<PlayerBehaviour>();
-        player1Behaviour.Setup(managerHelper, "1");
+        player1Behaviour.Setup(appManager, "1");
         player1Behaviour.ActivateFollowCamera();
         inputHandler = player1Object.AddComponent<InputHandler>();
-        inputHandler.Setup(managerHelper);
+        inputHandler.Setup(appManager);
 
         GameObject player2Object = Instantiate(playerPrefab, ringController.GetPlayerSpawnPoint(1).transform.transform.position, ringController.GetPlayerSpawnPoint(1).transform.transform.rotation);
         player2Object.GetComponentInChildren<Renderer>().material = playerMaterials[1];
         player2Behaviour = player2Object.GetComponent<PlayerBehaviour>();
-        player2Behaviour.Setup(managerHelper, "2");
+        player2Behaviour.Setup(appManager, "2");
         basicAIBrain = player2Object.AddComponent<BasicAIBrain>();
-        basicAIBrain.Setup(managerHelper, player1Behaviour, basicOpponentData);
+        basicAIBrain.Setup(appManager, player1Behaviour, basicOpponentData);
     }
 
     private void Update()
